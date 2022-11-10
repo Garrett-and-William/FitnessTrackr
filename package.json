@@ -1,7 +1,14 @@
 {
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.8.0"
+  },
   "name": "fitnesstrackr",
-  "version": "1.0.0",
   "description": "",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,12 +23,5 @@
   "bugs": {
     "url": "https://github.com/Garrett-and-William/FitnessTrackr/issues"
   },
-  "homepage": "https://github.com/Garrett-and-William/FitnessTrackr#readme",
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0",
-    "pg": "^8.8.0"
-  }
+  "homepage": "https://github.com/Garrett-and-William/FitnessTrackr#readme"
 }
