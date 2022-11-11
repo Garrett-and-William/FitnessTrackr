@@ -51,22 +51,22 @@ async function getActivityByName(name) {
     }
 }
 
-async function attachActivitiesToRoutines(routines) {
+// async function attachActivitiesToRoutines(routines) {
     
   
-    try{
-        console.log(routines)
-        const {row} = await client.query(`
-        SELECT * FROM activities
-        WHERE routineactivities("activityId") = ${routines.id};
-        `)
-      routines.activities = row;
-      return routines.activities;
-    }catch(error){
-      console.log(error)
-    }
+//     try{
+//         console.log(routines)
+//         const {row} = await client.query(`
+//         SELECT * FROM activities
+//         WHERE routineactivities("activityId") = ${routines.id};
+//         `)
+//       routines.activities = row;
+//       return routines.activities;
+//     }catch(error){
+//       console.log(error)
+//     }
 
-}
+// }
 
 async function updateActivity({ id, ...fields }) {
   // don't try to update the id
