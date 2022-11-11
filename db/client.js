@@ -1,10 +1,7 @@
-const { Pool } = require('pg');
+const pg = require("pg");
 
-const connectionString = process.env.DATABASE_URL || 'https://localhost:5432/fitness-dev';
 
-const client = new Pool({
-  connectionString,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
-});
+
+const client = new pg.Client("postgres://localhost:5432/fitness-dev");
 
 module.exports = client;

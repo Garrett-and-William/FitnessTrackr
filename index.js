@@ -2,7 +2,7 @@ const express = require("express")
 const morgan = require("morgan")
 
 const app = express();
-const { client } = require("./db/index")
+const  client  = require("./db/client")
 app.use(morgan("dev"));
 
 client.connect()
