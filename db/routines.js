@@ -13,10 +13,17 @@ async function createRoutine({ creatorId, isPublic, name, goal }) {
   }
 }
 
-async function getRoutineById(id) {}
+async function getRoutineById(id) {
+  const {rows: [getbyid]} = await client.query(`
+      SELECT * FROM routines
+      WHERE id = $1;
+  `,[id])
+  console.log(getbyid)
+  return getbyid
+}
 
 async function getRoutinesWithoutActivities() {}
-
+  
 async function getAllRoutines() {}
 
 async function getAllPublicRoutines() {}

@@ -5,15 +5,13 @@ const  bcrypt  = require("bcrypt")
 // user functions
 async function createUser({ username, password }) {
   const hashedPassword = await bcrypt.hash(password, 10);
-
-  
   try{
       const user = await client.query(`
           INSERT INTO users(username, password)
           VALUES ($1,$2)
           RETURNING *;
       `,[username, hashedPassword])
-      console.log(user)
+
       return user
     }catch(error){
       console.log(error)
