@@ -2,8 +2,8 @@
 // const { } = require('./');
 const client = require("./client")
 const { createUser } = require("./users")
-const { createActivity,getAllActivities,getActivityById,getActivityByName } = require("./activities")
-const { createRoutine,getRoutineById } = require("./routines")
+const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity,attachActivitiesToRoutines } = require("./activities")
+const { createRoutine,getRoutineById,getRoutinesWithoutActivities } = require("./routines")
 const { addActivityToRoutine } = require("./routine_activities")
 
 async function dropTables() {
@@ -44,7 +44,7 @@ async function createTables() {
         goal TEXT NOT NULL
       );
       CREATE TABLE routineactivities(
-        ud SERIAL PRIMARY KEY,
+        id SERIAL PRIMARY KEY,
         "routineId" INTEGER REFERENCES routines(id),
         "activityId" INTEGER REFERENCES activities(id),
         duration INTEGER,
@@ -229,11 +229,13 @@ async function rebuildDB() {
     await createInitialUsers()
     await createInitialActivities()
     await createInitialRoutines()
+    await createInitialRoutineActivities()
+    // await updateActivity({id: 1, name: "cowx", description: "boyled"})
     // await getAllActivities()
     // await getActivityById(1)
     // await getActivityByName("Push Ups")
     // await getRoutineById(1)
-    // await createInitialRoutineActivities()
+    await attachActivitiesToRoutines(await getRoutineById(1))
 
   } catch (error) {
     console.log("Error during rebuildDB")
