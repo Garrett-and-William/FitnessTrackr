@@ -14,39 +14,39 @@ async function createUser({ username, password }) {
           RETURNING *; 
       `,[username, hashedPassword])
       //removed * from above so it would not return a password
-console.log(rows)
+// console.log(rows)
       return rows
     }catch(error){
       console.log(error)
     }
 }
-
-async function getUser({username, password}) {
-  const user = await getUserByUserName(username);
-  const hashedPassword = user.password;
+ // currently returning all users
+async function getUser(username, password) {
+  const userByName = await getUserByUserName(username);
+  const hashedPassword = userByName.password;
+  
   const isValid = await bcrypt.compare(password, hashedPassword)
+  if (isValid == true){ //verify password against hashed password
   try {
     //select username from user table
-    const {rows} = await client.query(`
-    SELECT *
+    const {rows:[user]} = await client.query(`
+    SELECT id, username
     FROM users
-    `);
+    WHERE username = $1;
+    `, [username]);
  
     
-  console.log(rows)
-  
-  if (isValid= true){ //verify password against hashed password
+  console.log(user)
  
-    return rows
-  }else{
-    return console.log("password or user does not exist")
+    return user
+  } catch (error) {
+    return error;
   }
-    
-    } catch (error) {
-      return error;
-    }
- 
 
+    }else{
+    return console.log("password or user does not exist")
+  
+}
 }
 
 async function getUserById(userId) {
@@ -83,7 +83,7 @@ async function getUserByUserName(username) {
     }
 
     // user.routines = await getAllRoutinesByUser(userName);
-
+// console.log('getUserByUserName: ', user)
     return user;
   } catch (error) {
     throw error;

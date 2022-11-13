@@ -51,7 +51,7 @@ async function getActivityByName(name) {
     }
 }
 
-// async function attachActivitiesToRoutines(routines) {
+async function attachActivitiesToRoutines(routines) {
     
   
 //     try{
@@ -66,7 +66,7 @@ async function getActivityByName(name) {
 //       console.log(error)
 //     }
 
-// }
+}
 
 async function updateActivity({ id, ...fields }) {
   // don't try to update the id
