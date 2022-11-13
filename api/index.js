@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+router.use((req, res, next) => {
+    if (req.user) {
+      console.log("User is set:", req.user);
+    }
+  
+    next();
+  });
+
 // GET /api/health
 router.get('/health', async (req, res, next) => {
 });
