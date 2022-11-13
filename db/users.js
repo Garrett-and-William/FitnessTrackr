@@ -51,11 +51,11 @@ async function getUser({username, password}) {
 
 async function getUserById(userId) {
   try {
-    const { rows } = await client.query(`
-      SELECT id, username
+    const { rows: [user] } = await client.query(`
+      SELECT *
       FROM users
-      WHERE id=${ userId }
-    `);
+      WHERE id=$1
+    `, [userId]);
    
     if (!user) {
       return null
@@ -63,7 +63,7 @@ async function getUserById(userId) {
 
     // user.routines = await getAllRoutinesByUser(user.username);
 
-    return rows;
+    return user;
   } catch (error) {
     throw error;
   }
