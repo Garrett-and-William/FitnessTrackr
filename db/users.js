@@ -5,7 +5,7 @@ const { getAllRoutinesByUser } = require("./routines");
 // database functions
 
 // user functions
-async function createUser({ username, password }) {
+async function createUser( {username, password }) {
   const hashedPassword = await bcrypt.hash(password, 10);
   try{
       const {rows} = await client.query(`

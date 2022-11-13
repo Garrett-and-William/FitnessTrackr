@@ -2,6 +2,7 @@ const express = require('express');
 const usersRouter = express.Router();
 const {getUserByUserName, createUser, getUser } = require('../db');
 const jwt = require('jsonwebtoken');
+const  bcrypt  = require("bcrypt");
 
 
 //May not be needed
@@ -16,7 +17,7 @@ const jwt = require('jsonwebtoken');
 
 usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
-  
+    
 
   if (!username || !password) {
     next({
@@ -26,9 +27,10 @@ usersRouter.post('/login', async (req, res, next) => {
   }
 
   try {
-    const user = await getUser(username, password);
-
-    if (user && user.password == password) {
+    const user = await getUserByUserName(username);
+    const hashedPassword = user.password;
+    const isValid = await bcrypt.compare(password, hashedPassword)
+    if (user && isValid) {
       // create token & return to user
       const token = jwt.sign({id: user.id, username: username }, 'server secret');
 

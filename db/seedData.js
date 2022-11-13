@@ -230,11 +230,6 @@ async function rebuildDB() {
     await createInitialActivities()
     await createInitialRoutines()
     await createInitialRoutineActivities()
-
-    console.log('getUser test: ')
-    const user= await getUser('glamgal', 'glamgal123')
-    // console.log('getUser test ended', user)
-
     // await updateActivity({id: 1, name: "cowx", description: "boyled"})
     // await getAllActivities()
     // await getActivityById(1)
