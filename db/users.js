@@ -35,7 +35,7 @@ async function getUser(username, password) {
     WHERE username = $1;
     `, [username]);
  
-    
+     
   console.log(user)
  
     return user
