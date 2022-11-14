@@ -3,7 +3,7 @@
 const client = require("./client")
 const { createUser } = require("./users")
 const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity,attachActivitiesToRoutines } = require("./activities")
-const { createRoutine,getRoutineById,getRoutinesWithoutActivities } = require("./routines")
+const { createRoutine,getRoutineById,getRoutinesWithoutActivities,getAllRoutines } = require("./routines")
 const { addActivityToRoutine } = require("./routine_activities")
 
 async function dropTables() {
@@ -235,7 +235,8 @@ async function rebuildDB() {
     // await getActivityById(1)
     // await getActivityByName("Push Ups")
     // await getRoutineById(1)
-    await attachActivitiesToRoutines(await getRoutineById(1))
+    // await attachActivitiesToRoutines(await getRoutineById(1))
+    await getAllRoutines()
 
   } catch (error) {
     console.log("Error during rebuildDB")
