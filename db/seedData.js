@@ -1,8 +1,9 @@
 // require in the database adapter functions as you write them (createUser, createActivity...)
 // const { } = require('./');
 const client = require("./client")
-const { createUser } = require("./users")
-const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity,attachActivitiesToRoutines } = require("./activities")
+
+const { createUser, getUser, getUserByUserName, getUserById} = require("./users")
+const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity, attachActivitiesToRoutines }= require("./activities")
 const { createRoutine,getRoutineById,getRoutinesWithoutActivities,getAllRoutines } = require("./routines")
 const { addActivityToRoutine } = require("./routine_activities")
 
@@ -74,7 +75,7 @@ async function createInitialUsers() {
 
     // console.log("Users created:")
     // console.log(users)
-    // console.log("Finished creating users!")
+    console.log("Finished creating users!")
   } catch (error) {
     console.error("Error creating users!")
     throw error
@@ -108,7 +109,7 @@ async function createInitialActivities() {
     // console.log("activities created:")
     // console.log(activities)
 
-    // console.log("Finished creating activities!")
+    console.log("Finished creating activities!")
   } catch (error) {
     console.error("Error creating activities!")
     throw error
@@ -148,7 +149,7 @@ async function createInitialRoutines() {
     routinesToCreate.map((routine) => createRoutine(routine))
   )
   // console.log("Routines Created: ", routines)
-  // console.log("Finished creating routines.")
+  console.log("Finished creating routines.")
 }
 
 async function createInitialRoutineActivities() {
@@ -218,7 +219,7 @@ async function createInitialRoutineActivities() {
     routineActivitiesToCreate.map(addActivityToRoutine)
   )
   // console.log("routine_activities created: ", routineActivities)
-  // console.log("Finished creating routine_activities!")
+  console.log("Finished creating routine_activities!")
 }
 
 async function rebuildDB() {

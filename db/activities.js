@@ -61,6 +61,7 @@ async function attachActivitiesToRoutines(routines) {
         WHERE "routineId" = ${routines.id};
         `)
 
+
         const idvalues = rows.map((key) => {return key.activityId})
         const indexVal = idvalues.map((_, index) => {return `$${index + 1}`}).join(", ")
   
@@ -75,7 +76,6 @@ async function attachActivitiesToRoutines(routines) {
     }catch(error){
       console.log(error)
     }
-
 }
 
 async function updateActivity({ id, ...fields }) {
