@@ -1,4 +1,5 @@
 const client = require("./client");
+const {attachActivitiesToRoutines, getActivityById} = require('./activities')
 
 async function addActivityToRoutine({
   routineId,
@@ -31,8 +32,22 @@ async function getRoutineActivityById(id) {
 }
 
 async function getRoutineActivitiesByRoutine({ id }) {
+  // select and return an array of all routine_activity records
+  console.log('getting to the problem area')
+  try {
+    
+  const attachedRoutine = await 
+    attachActivitiesToRoutines(await getActivityById(id))
+  
+  console.log(attachedRoutine)
+} catch (error) {
+    console.log(error)
+}
+    
 
 }
+
+
 async function updateRoutineActivity({ id, ...fields }) {
 
 }
