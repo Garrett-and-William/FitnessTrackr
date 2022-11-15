@@ -85,8 +85,8 @@ async function destroyRoutineActivity(id) {
   try {
     await client.query(`
       DELETE FROM routineactivities
-      USING id
-      WHERE id=${id}
+   
+      WHERE id=$1
      
     ;`, [id]);
     console.log('RoutineActivity Destroyed')
