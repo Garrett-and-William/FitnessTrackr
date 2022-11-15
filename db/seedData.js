@@ -241,7 +241,7 @@ async function rebuildDB() {
     // await getRoutineActivitiesByRoutine(await getActivityById(1))
     
     console.log('testing area')
-    await destroyRoutineActivity(1)
+    // await destroyRoutineActivity(1)
     // await getRoutineActivityById(1)
     // await updateRoutineActivity({id: await getRoutineActivityById(1), duration: 10, count: 20})
 console.log('Rebuild Complete')

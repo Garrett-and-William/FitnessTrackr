@@ -85,10 +85,8 @@ async function destroyRoutineActivity(id) {
   try {
     await client.query(`
       DELETE FROM routineactivities
-   
-      WHERE id=$1
-     
-    ;`, [id]);
+      WHERE id=$1;
+      `, [id]);
     console.log('RoutineActivity Destroyed')
   } catch (error) {
     console.log (error)
@@ -98,6 +96,12 @@ async function destroyRoutineActivity(id) {
 }
 
 async function canEditRoutineActivity(routineActivityId, userId) {
+  console.log(routineActivityId)
+  console.log (userId)
+    if(x){
+      
+    }
+
 
 }
 
