@@ -52,30 +52,30 @@ async function getActivityByName(name) {
 }
 
 async function attachActivitiesToRoutines(routines) {
-    
+    console.log(routines)
   
-    try{
-      console.log("starting routines get")
-        const { rows } = await client.query(`
-        SELECT "activityId" FROM routineactivities
-        WHERE "routineId" = ${routines.id};
-        `)
+  try{
+    console.log("starting routines get")
+      const { rows } = await client.query(`
+      SELECT "activityId" FROM routineactivities
+      WHERE "routineId" = ${routines.id};
+      `)
 
 
-        const idvalues = rows.map((key) => {return key.activityId})
-        const indexVal = idvalues.map((_, index) => {return `$${index + 1}`}).join(", ")
-  
-        const getValues = await client.query(`
-        SELECT name,description FROM activities 
-        WHERE id IN (${indexVal});
-        `, idvalues)
+      const idvalues = rows.map((key) => {return key.activityId})
+      const indexVal = idvalues.map((_, index) => {return `$${index + 1}`}).join(", ")
 
-        routines.activity = getValues.rows;
-        console.log("finishing routines get")
-        return routines
-    }catch(error){
-      console.log(error)
-    }
+      const getValues = await client.query(`
+      SELECT name,description FROM activities 
+      WHERE id IN (${indexVal});
+      `, idvalues)
+
+      routines.activity = getValues.rows;
+      console.log("finishing routines get")
+      return routines
+  }catch(error){
+    console.log(error)
+  }
 }
 
 async function updateActivity({ id, ...fields }) {
