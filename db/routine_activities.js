@@ -20,11 +20,13 @@ async function addActivityToRoutine({
 }
 
 async function getRoutineActivityById(id) {
+  // console.log(id)
         try{
-          const {row : [getbyid]} = client.query(`
+          const {rows: [getbyid]} = await client.query(`
           SELECT * FROM routineactivities
           WHERE id = $1;
           `, [id])
+          // console.log(getbyid)
           return getbyid
         }catch(error){
           console.log(error)
@@ -33,13 +35,14 @@ async function getRoutineActivityById(id) {
 
 async function getRoutineActivitiesByRoutine({ id }) {
   // select and return an array of all routine_activity records
-  console.log('getting to the problem area')
+  // console.log('getting to the problem area')
   try {
     
   const attachedRoutine = await 
     attachActivitiesToRoutines(await getActivityById(id))
   
-  console.log(attachedRoutine)
+  // console.log(attachedRoutine)
+  return attachedRoutine
 } catch (error) {
     console.log(error)
 }
@@ -49,10 +52,48 @@ async function getRoutineActivitiesByRoutine({ id }) {
 
 
 async function updateRoutineActivity({ id, ...fields }) {
+  
+  const route = id.id
+ 
+  const setString = Object.keys(fields).map(
+    (key, index) => `"${ key }"=$${ index + 1 }`
+  ).join(', ');
 
+
+
+  // return if no fields
+  if (setString.length === 0) {
+    return;
+  }
+
+  try {
+    const { rows } = await client.query(`
+      UPDATE routineactivities
+      SET ${setString}
+      WHERE id=${ route }
+      RETURNING *;
+    `, Object.values(fields));
+// console.log('RoutineAcitivy Update: ', rows)
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function destroyRoutineActivity(id) {
+  console.log(id)
+  try {
+    await client.query(`
+      DELETE FROM routineactivities
+      USING id
+      WHERE id=${id}
+     
+    ;`, [id]);
+    console.log('RoutineActivity Destroyed')
+  } catch (error) {
+    console.log (error)
+    
+  }
 
 }
 
