@@ -45,7 +45,7 @@ routineActivitiesRouter.patch('/:routineActivityId', requireUser, async (req, re
 
 // DELETE /api/routine_activities/:routineActivityId
 
-postsRouter.delete('/:routineActivityId', requireUser, async (req, res, next) => {
+routineActivitiesRouter.delete('/:routineActivityId', requireUser, async (req, res, next) => {
     try {
       const raid = await getRoutineActivityById(req.params);
       const routineById = await getRoutineById(raid.routineId);

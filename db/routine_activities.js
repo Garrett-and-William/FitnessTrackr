@@ -95,15 +95,15 @@ async function destroyRoutineActivity(id) {
 
 }
 
-async function canEditRoutineActivity(routineActivityId, userId) {
-  console.log(routineActivityId)
-  console.log (userId)
-    if(x){
+// async function canEditRoutineActivity(routineActivityId, userId) {
+//   console.log(routineActivityId)
+//   console.log (userId)
+//     if(x){
       
-    }
+//     }
 
 
-}
+// }
 
 module.exports = {
   getRoutineActivityById,
