@@ -8,7 +8,7 @@ const NavBar = () => {
                 <div className = "Title"><Link to = "/" className= "Title">FitnessTracker</Link></div>
                 <div className = "navbar">
                 <div className = "FirstHalf">
-                    <Link to = "/Home" className = "NavButton">Homepage</Link>
+                    <Link to = "/" className = "NavButton">Homepage</Link>
                     <Link to = "/Workouts" className = "NavButton">Workouts</Link>
                 </div>
                 <div className = "SecondHalf">

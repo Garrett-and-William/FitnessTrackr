@@ -51,3 +51,24 @@ body{
 .navbar{
     display: flex;
 }
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+}
+.TypingInput{
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    text-align: center;
+}
+button{
+    display: flex;
+}
+.submitcontain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
