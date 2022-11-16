@@ -81,7 +81,7 @@ async function updateRoutineActivity({ id, ...fields }) {
 }
 
 async function destroyRoutineActivity(id) {
-  console.log(id)
+  // console.log(id)
   try {
     await client.query(`
       DELETE FROM routineactivities

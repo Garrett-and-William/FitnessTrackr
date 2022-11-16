@@ -66,7 +66,7 @@ routinesRouter.post('/', requireUser, async (req, res, next) => {
 
 // PATCH /api/routines/:routineId
 
-postsRouter.patch('/:routineId', requireUser, async (req, res, next) => {
+routinesRouter.patch('/:routineId', requireUser, async (req, res, next) => {
     const { rid } = req.params;
     const { name, goal, isPublic } = req.body;
   
@@ -103,6 +103,34 @@ postsRouter.patch('/:routineId', requireUser, async (req, res, next) => {
 
 // DELETE /api/routines/:routineId
 
+routinesRouter.delete('/:routineId', requireUser, async (req, res, next) => {
+    try {
+      const routine = await getRoutineById(req.params);
+  
+      if (routine && routine.creatorId === req.user.id) {
+       await Promise.all(
+        destroyRoutineActivity(routine.routineId),
+        destroyRoutine(routine.id)
+
+       )
+  
+        res.send('Succesfully Deleted');
+      } else {
+        //if no routine is found send not found error. If no user then through no user error
+        next(routine ? { 
+          name: "UnauthorizedUserError",
+          message: "You cannot delete a routine which is not yours"
+        } : {
+          name: "RoutineNotFoundError",
+          message: "That routine does not exist"
+        });
+      }
+  
+    } catch ({ name, message }) {
+      next({ name, message })
+    }
+  });
+
 // POST /api/routines/:routineId/activities
 
-module.exports = router;
+module.exports = routinesRouter;
