@@ -107,7 +107,33 @@ async function getPublicRoutinesByActivity({ id }) {
   } 
 }
 
-async function updateRoutine({ id, ...fields }) {}
+async function updateRoutine({ id, ...fields }) {
+
+  const route = id.id
+ 
+  const setString = Object.keys(fields).map(
+    (key, index) => `"${ key }"=$${ index + 1 }`
+  ).join(', ');
+
+  // return if no fields
+  if (setString.length === 0) {
+    return;
+  }
+
+  try {
+    const { rows } = await client.query(`
+      UPDATE routineactivities
+      SET ${setString}
+      WHERE id=${ route }
+      RETURNING *;
+    `, Object.values(fields));
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+
+}
 
 async function destroyRoutine(id) {}
 

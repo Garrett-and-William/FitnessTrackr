@@ -1,6 +1,6 @@
 const express = require('express');
 const routinesRouter = express.Router();
-const { getAllRoutines, getRoutineById, updateRoutine} = require("../db")
+const { getAllRoutines, getRoutineById, updateRoutine, destroyRoutine, destroyRoutineActivity, getActivityById, } = require("../db")
 
 const { requireUser } = require('./utils');
 
@@ -11,8 +11,8 @@ routinesRouter.get('/', async (req, res, next) => {
     try {
       const allRoutines = await getAllRoutines();
   
-      const publicRoutines = allRoutines.filter(post => {
-        // retrieve all public posts
+      const publicRoutines = allRoutines.filter(publicRoutines => {
+        // retrieve all public routines
         if (publicRoutines.isPublic) {
           return true;
         }
@@ -132,5 +132,7 @@ routinesRouter.delete('/:routineId', requireUser, async (req, res, next) => {
   });
 
 // POST /api/routines/:routineId/activities
+
+
 
 module.exports = routinesRouter;
