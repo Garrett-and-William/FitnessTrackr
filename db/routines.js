@@ -1,8 +1,7 @@
 const client = require("./client");
+// const { getUserByUserName } = require("./users")
 
 async function createRoutine({ creatorId, isPublic, name, goal }) {
-
-
 
   try { 
 
@@ -42,15 +41,66 @@ async function getRoutinesWithoutActivities() {
     console.log(error)
   }
 }
-async function getAllRoutines() {}
+async function getAllRoutines() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM routines;
+    `)
+    return rows
+  } catch (error) {
+    console.log(error)
+  }
 
-async function getAllPublicRoutines() {}
+}
 
-async function getAllRoutinesByUser({ username }) {}
+async function getAllPublicRoutines() {
+  try {
+    const { rows } = await client.query(`
+    SELECT * FROM routines
+    WHERE 'isPublic' = true;`)
+    return rows
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-async function getPublicRoutinesByUser({ username }) {}
+async function getAllRoutinesByUser({ username }) {
 
-async function getPublicRoutinesByActivity({ id }) {}
+
+  try {
+      const user = getUserByUserName(username)
+      const { rows } = await client.query(`
+      SELECT * FROM routines
+      WHERE 'creatorId' = ${user.id};`)
+      return rows
+  } catch (error) {
+      console.log(error)
+  }
+
+}
+async function getPublicRoutinesByUser({ username }) {
+try {
+  const user = getUserByUserName(username)
+  const { rows } = await client.query(`
+  SELECT * FROM routines
+  WHERE 'creatorId' = ${user.id} AND 'isPublic' = true;` )
+  return rows
+}   catch (error) {
+  console.log(error)
+} 
+}
+
+async function getPublicRoutinesByActivity({ id }) {
+//   try {
+//     const activity = getActivityById(id)
+//     const { rows } = await client.query(
+//     SELECT * FROM routines
+//     WHERE 'creatorId' = ${activity.id} AND 'isPublic' = true; )
+//     return rows
+//   }   catch (error) {
+//     console.log(error)
+//   } 
+}
 
 async function updateRoutine({ id, ...fields }) {}
 
