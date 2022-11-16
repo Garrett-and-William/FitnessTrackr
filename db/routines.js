@@ -122,7 +122,7 @@ async function updateRoutine({ id, ...fields }) {
 
   try {
     const { rows } = await client.query(`
-      UPDATE routineactivities
+      UPDATE routines
       SET ${setString}
       WHERE id=${ route }
       RETURNING *;
@@ -135,7 +135,18 @@ async function updateRoutine({ id, ...fields }) {
 
 }
 
-async function destroyRoutine(id) {}
+async function destroyRoutine(id) {
+  try {
+    await client.query(`
+      DELETE FROM routines
+      WHERE id=$1;
+      `, [id]);
+    console.log('Routine Destroyed')
+  } catch (error) {
+    console.log (error)
+    
+  }
+}
 
 module.exports = {
   getRoutineById,
