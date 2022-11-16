@@ -86,20 +86,23 @@ async function getPublicRoutinesByUser({ username }) {
     console.log(error)
   } 
 }
+
 async function getPublicRoutinesByActivity({ id }) {
   try {
     const activity = getActivityById(id)
     const activities = await client.query(`
     SELECT * FROM routineactivities
-    WHERE 'activityId' = ${activity.routineId};`)
+    WHERE 'activityId' = ${activity.routineId} AND 'isPublic' = true;`)
 
-    let checkit = activities.rows.map((el) => {return ", "})
-    let checkitInd = activities.rows.map((_,ind) => {return })
+    return activities
 
-    const { rows } = await client.query(`
-    SELECT * FROM routines
-    WHERE 'id' IN (${checkit})
-    `, [])
+    // let checkit = activities.rows.map((el) => {return ", "})
+    // let checkitInd = activities.rows.map((_,ind) => {return })
+
+    // const { rows } = await client.query(`
+    // SELECT * FROM routines
+    // WHERE 'id' IN (${checkit})
+    // `, [])
 
     
   }   catch (error) {

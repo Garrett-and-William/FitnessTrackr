@@ -7,6 +7,19 @@ const { requireUser } = require('./utils');
 
 // GET /api/activities/:activityId/routines
 
+activitiesRouter.get('/:activityId/routines', async (req, res, next) => {
+    const aid = req.params
+    try {
+      const allActivities = await getPublicRoutinesByActivity(aid);
+    
+      res.send({
+        allActivities
+      });
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+  });
+
 
 
 // GET /api/activities
