@@ -5,7 +5,8 @@ const { requireUser } = require('./utils');
 const { 
     getRoutineById,
     getRoutineActivityById,
-    updateRoutineActivity
+    updateRoutineActivity,
+    destroyRoutineActivity
   } = require('../db');
   
 
