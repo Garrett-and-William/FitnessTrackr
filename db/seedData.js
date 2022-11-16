@@ -5,7 +5,7 @@ const client = require("./client")
 const { createUser} = require("./users")
 const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity }= require("./activities")
 const { createRoutine,getRoutineById,getRoutinesWithoutActivities } = require("./routines")
-const { addActivityToRoutine, getRoutineActivitiesByRoutine } = require("./routine_activities")
+const { addActivityToRoutine, getRoutineActivitiesByRoutine, updateRoutineActivity, getRoutineActivityById, destroyRoutineActivity } = require("./routine_activities")
 
 async function dropTables() {
   console.log("Dropping All Tables...")
@@ -235,18 +235,23 @@ async function rebuildDB() {
     await createInitialRoutineActivities()
     await getAllActivities()
     await getActivityById(1)
-    await getActivityByName("Push Ups")
+    // await getActivityByName("Push Ups")
     // await getRoutineById(1)
-    console.log("about to run get activities")
+    // console.log("about to run get activities")
     // await getRoutineActivitiesByRoutine(await getActivityById(1))
-    client.end()
+    
+    console.log('testing area')
+    // await destroyRoutineActivity(1)
+    // await getRoutineActivityById(1)
+    // await updateRoutineActivity({id: await getRoutineActivityById(1), duration: 10, count: 20})
+console.log('Rebuild Complete')
   } catch (error) {
     console.log("Error during rebuildDB")
     throw error
   }
 }
 
-rebuildDB()
+
 
 module.exports = {
   rebuildDB,

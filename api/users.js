@@ -6,9 +6,9 @@ const {
     getUser, 
     getAllRoutinesByUser, 
     getPublicRoutinesByUser } = require('../db');
-require("dotenv").config()
+
 const  bcrypt  = require("bcrypt");
-const { JWT_SECRET } = process.env;
+
 const jwt = require('jsonwebtoken');
 
 
@@ -17,7 +17,6 @@ const jwt = require('jsonwebtoken');
 usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
     
-
   if (!username || !password) {
     next({
       name: "MissingCredentialsError",
@@ -32,8 +31,12 @@ usersRouter.post('/login', async (req, res, next) => {
     const isValid = await bcrypt.compare(password, hashedPassword)
     if (user && isValid) {
       // create token & return to user
-      const token = jwt.sign({id: user.id, username: username }, 'secret', {expiresIn: '1w'});
-      res.send({ message: `Thank you for logging in ${username}`, token: token });
+      const token = jwt.sign({id: user.id, 
+        username: username 
+      }, process.env.JWT_SECRET, {
+        expiresIn: '1w'});
+      
+        res.send({ message: `Thank you for logging in ${username}`, token: token });
     } else {
       next({ 
         name: 'IncorrectCredentialsError', 
@@ -66,7 +69,10 @@ usersRouter.post('/register', async (req, res, next) => {
         password
       });
   
-      const token = jwt.sign({id: user.id, username}, 'secret', {expiresIn: '1w'});
+      const token = jwt.sign({id: user.id, 
+        username: username 
+      }, process.env.JWT_SECRET, {
+        expiresIn: '1w'});
   
       res.send({ 
         message: "You are ready to start tracking your fitness journey",
