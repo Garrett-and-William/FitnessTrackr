@@ -1,0 +1,53 @@
+body{
+    margin: 0
+}
+.NavBar{
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+.Title{
+    justify-content: center;
+    height: 15vh;
+    width: 100vw;
+    display:flex;
+    align-items: center;
+    text-align: center;
+    font-size: 10vh;
+    text-decoration: none;
+    color: black
+}
+.FirstHalf{
+    width: 50%;
+    height: 5vh;
+    display: flex;
+
+}
+.SecondHalf{
+    width: 50%;
+    height: 5vh;
+    display: flex;
+    justify-content: right;
+
+}
+.NavButton{
+    padding: 0 1vw;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    display: flex;
+}
+.NavButton:hover{
+    transition: .25s;
+    color: white;
+    background-color: darkcyan;
+
+}
+.navbar{
+    display: flex;
+}

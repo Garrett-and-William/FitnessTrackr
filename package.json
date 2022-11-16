@@ -5,7 +5,12 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "^5.0.1"
   },
   "name": "fitnesstrackr",
   "description": "",
@@ -14,7 +19,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:dev": "nodemon run ./db/seed.js",
-    "start:dev": "nodemon index.js"
+    "start:dev": "nodemon index.js",
+    "startFE": "react-scripts start"
   },
   "repository": {
     "type": "git",
@@ -26,8 +32,20 @@
   "bugs": {
     "url": "https://github.com/Garrett-and-William/FitnessTrackr/issues"
   },
-  "homepage": "https://github.com/Garrett-and-William/FitnessTrackr#readme",
+  "homepage": "/",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

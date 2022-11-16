@@ -1,6 +1,6 @@
-const client = require("./client");
-const  bcrypt  = require("bcrypt");
-const { getAllRoutinesByUser } = require("./routines");
+// const client = require("./client");
+// const  bcrypt  = require("bcrypt");
+// const { getAllRoutinesByUser } = require("./routines");
 
 // database functions
 

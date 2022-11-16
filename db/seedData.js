@@ -2,7 +2,7 @@
 // const { } = require('./');
 const client = require("./client")
 
-const { createUser, getUser, getUserByUserName, getUserById} = require("./users")
+const { createUser} = require("./users")
 const { createActivity,getAllActivities,getActivityById,getActivityByName, updateActivity }= require("./activities")
 const { createRoutine,getRoutineById,getRoutinesWithoutActivities } = require("./routines")
 const { addActivityToRoutine, getRoutineActivitiesByRoutine } = require("./routine_activities")
@@ -218,6 +218,8 @@ async function createInitialRoutineActivities() {
   const routineActivities = await Promise.all(
     routineActivitiesToCreate.map(addActivityToRoutine)
   )
+
+  console.log(routineActivitiesToCreate)
   // console.log("routine_activities created: ", routineActivities)
   console.log("Finished creating routine_activities!")
 }
@@ -236,7 +238,7 @@ async function rebuildDB() {
     await getActivityByName("Push Ups")
     // await getRoutineById(1)
     console.log("about to run get activities")
-    await getRoutineActivitiesByRoutine(await getActivityById(1))
+    // await getRoutineActivitiesByRoutine(await getActivityById(1))
     client.end()
   } catch (error) {
     console.log("Error during rebuildDB")

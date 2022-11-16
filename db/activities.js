@@ -52,7 +52,7 @@ async function getActivityByName(name) {
 }
 
 async function attachActivitiesToRoutines(routines) {
-    console.log(routines)
+    
   
   try{
     console.log("starting routines get")

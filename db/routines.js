@@ -1,5 +1,6 @@
 const client = require("./client");
-const { attachActivitiesToRoutines } = require("./activities")
+const { attachActivitiesToRoutines,getActivityById } = require("./activities")
+const { getUserByUserName } = require("./users")
 async function createRoutine({ creatorId, isPublic, name, goal }) {
 
 
@@ -46,19 +47,69 @@ async function getAllRoutines() {
       const { rows } = await client.query(`
       SELECT * FROM routines;
       `)
+      return rows
     } catch (error) {
       console.log(error)
     }
     
 }
 
-async function getAllPublicRoutines() {}
+async function getAllPublicRoutines() {
+    try {
+      const { rows } = await client.query(`
+      SELECT * FROM routines
+      WHERE 'isPublic' = true;`)
+      return rows
+    } catch (error) {
+      console.log(error)
+    }
+}
 
-async function getAllRoutinesByUser({ username }) {}
+async function getAllRoutinesByUser({ username }) {
 
-async function getPublicRoutinesByUser({ username }) {}
 
-async function getPublicRoutinesByActivity({ id }) {}
+    try {
+        const user = getUserByUserName(username)
+        const { rows } = await client.query(`
+        SELECT * FROM routines
+        WHERE 'creatorId' = ${user.id};`)
+        return rows
+    } catch (error) {
+        console.log(error)
+    }
+
+  }
+async function getPublicRoutinesByUser({ username }) {
+  try {
+    const user = getUserByUserName(username)
+    const { rows } = await client.query(`
+    SELECT * FROM routines
+    WHERE 'creatorId' = ${user.id} AND 'isPublic' = true; `)
+    return rows
+  }   catch (error) {
+    console.log(error)
+  } 
+}
+async function getPublicRoutinesByActivity({ id }) {
+  try {
+    const activity = getActivityById(id)
+    const activities = await client.query(`
+    SELECT * FROM routineactivities
+    WHERE 'activityId' = ${activity.routineId};`)
+
+    let checkit = activities.rows.map((el) => {return ", "})
+    let checkitInd = activities.rows.map((_,ind) => {return })
+
+    const { rows } = await client.query(`
+    SELECT * FROM routines
+    WHERE 'id' IN (${checkit})
+    `, [])
+
+    
+  }   catch (error) {
+    console.log(error)
+  } 
+}
 
 async function updateRoutine({ id, ...fields }) {}
 
