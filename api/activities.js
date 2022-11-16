@@ -1,6 +1,8 @@
 const express = require('express');
 const activitiesRouter = express.Router();
-const { getAllActivities, } = require('../db');
+const { getAllActivities, createActivity, updateActivity} = require('../db');
+
+const { requireUser } = require('./utils');
 
 
 // GET /api/activities/:activityId/routines
@@ -23,7 +25,7 @@ activitiesRouter.get('/', async (req, res, next) => {
 
 // POST /api/activities
 
-routinesRouter.post('/', requireUser, async (req, res, next) => {
+activitiesRouter.post('/', requireUser, async (req, res, next) => {
     const { name, description } = req.body;
 
     const postActivity = {}
@@ -50,7 +52,36 @@ routinesRouter.post('/', requireUser, async (req, res, next) => {
     }
   });
 
-
 // PATCH /api/activities/:activityId
+
+activitiesRouter.patch('/:activityId', requireUser, async (req, res, next) => {
+    const { aid } = req.params;
+    const { name, description } = req.body;
+  
+    const updateFields = {};
+  
+    if (name) {
+      updateFields.name = name;
+    }
+  
+    if (goal) {
+      updateFields.description = description;
+    }
+
+    try {
+  
+      if (req.user) {
+        const updatedActivity = await updateActivity(aid, updateFields);
+        res.send({ updatedActivity })
+      } else {
+        next({
+          name: 'UnauthorizedUserError',
+          message: 'You must be logged in to update an activity'
+        })
+      }
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+  });
 
 module.exports = activitiesRouter;
