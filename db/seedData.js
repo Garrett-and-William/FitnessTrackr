@@ -219,7 +219,7 @@ async function createInitialRoutineActivities() {
     routineActivitiesToCreate.map(addActivityToRoutine)
   )
 
-  console.log(routineActivitiesToCreate)
+  // console.log(routineActivitiesToCreate)
   // console.log("routine_activities created: ", routineActivities)
   console.log("Finished creating routine_activities!")
 }
