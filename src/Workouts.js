@@ -3,9 +3,9 @@ import {Link} from "react-router-dom"
 
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
-    async function GetAllWorkouts (event) {
+    async function GetAllWorkouts () {
         try{
-            const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', 
+            const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', 
             {
                 headers : {
                     'Content-Type': 'application/json'
@@ -23,14 +23,21 @@ const Workouts = () => {
 
        useEffect(GetAllWorkouts, 
         [])
+
     return (
-            <div>
+            <div className = "LowerValue">
                 {workouts && workouts.length ? workouts.map(el => {
-                return  <div> 
-                        <div>{el.id}</div> 
-                        <div>{el.name}</div> 
-                        <div>{el.description}</div> 
-                        </div>}) : "cheese"}
+                return  <div className = "WorkoutContainer" key = {el.id}> 
+                        <div className = "WorkoutTitle">{el.name}</div> 
+                        <div className = "WorkoutDescription">{el.goal}</div> 
+                        <div className = "WorkoutDescription">By: {el.creatorName}</div> 
+                        <div>Activities</div>
+                        <div className = "activitiesContainer">
+                        
+                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities">[ {ele.name} ]</div>}): "cheese"}
+                        </div>
+                        </div>}) : "Internet Connection Not Valid"}
+                        
             </div>
 
     )
