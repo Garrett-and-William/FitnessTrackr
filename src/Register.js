@@ -22,7 +22,7 @@ const Register = () => {
                 })
                 const results = await data.json()
                 console.log(results)
-                if (results.success == true) {
+                if (results.user.id) {
                     localStorage.setItem("token", results.token)   
                 } else {
                     alert (results.message)

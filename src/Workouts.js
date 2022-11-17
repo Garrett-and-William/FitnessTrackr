@@ -3,7 +3,8 @@ import {Link} from "react-router-dom"
 
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
-    async function GetAllWorkouts () {
+    useEffect(()=> {
+    async function getAllWorkouts () {
         try{
             const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', 
             {
@@ -19,10 +20,12 @@ const Workouts = () => {
         }
         
        }
-       
+       getAllWorkouts()
+        }
+    
+    ,[])
 
-       useEffect(GetAllWorkouts, 
-        [])
+ 
 
     return (
             <div className = "LowerValue">
