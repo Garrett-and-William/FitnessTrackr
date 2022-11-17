@@ -2,7 +2,13 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 const Profile = () => {
-
+    async function getMyRoutines(){
+        const request = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/albert/routines', {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+    }
 
 
     return (
