@@ -8,13 +8,16 @@ const Register = () => {
         
         async function logInApi (event) {
             event.preventDefault()
+            console.log('register started')
+            console.log(username, password) 
+
             try{
-                const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', 
+                const data = await fetch('http://localhost:1337/api/users/register', 
                 {
                     method : "POST",
                     headers : {
                         'Content-Type' : "application/json"
-                    },body: JSON.stringify({
+                    }, body: JSON.stringify({
                         username,
                         password
                       })
@@ -22,7 +25,7 @@ const Register = () => {
                 })
                 const results = await data.json()
                 console.log(results)
-                if (results.success == true) {
+                if (results.user.id) {
                     localStorage.setItem("token", results.token)   
                 } else {
                     alert (results.message)
@@ -52,7 +55,7 @@ const Register = () => {
                 </div>
                 <div className = "TypingInput">
                     <div>Input New Password </div>
-                    <input type = "text" value = {password} onChange={changePass}></input>
+                    <input type = "password" value = {password} onChange={changePass}></input>
                 </div>
                 <div className = "submitcontain">
                    <button type = "submit">Register</button>

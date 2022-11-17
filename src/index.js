@@ -14,7 +14,7 @@ import "./styles.css"
 
 const app = document.getElementById("app")
 
-console.log(app)
+// console.log(app)
 const router = createBrowserRouter([
     {
         path: "/",

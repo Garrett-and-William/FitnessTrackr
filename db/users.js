@@ -1,6 +1,6 @@
-// const client = require("./client");
-// const  bcrypt  = require("bcrypt");
-// const { getAllRoutinesByUser } = require("./routines");
+const client = require("./client");
+const  bcrypt  = require("bcrypt");
+const { getAllRoutinesByUser } = require("./routines");
 
 // database functions
 
@@ -8,14 +8,14 @@
 async function createUser( {username, password }) {
   const hashedPassword = await bcrypt.hash(password, 10);
   try{
-      const {rows} = await client.query(`
+      const {rows: [users]} = await client.query(`
           INSERT INTO users(username, password)
           VALUES ($1,$2)
-          RETURNING *; 
+          RETURNING id, username; 
       `,[username, hashedPassword])
       //removed * from above so it would not return a password
-// console.log(rows)
-      return rows
+// console.log(users)
+      return users
     }catch(error){
       console.log(error)
     }
