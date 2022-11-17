@@ -55,7 +55,7 @@ async function attachActivitiesToRoutines(routines) {
     
   
   try{
-    console.log("starting routines get")
+    // console.log("starting routines get")
       const { rows } = await client.query(`
       SELECT "activityId" FROM routineactivities
       WHERE "routineId" = ${routines.id};

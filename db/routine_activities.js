@@ -81,7 +81,7 @@ async function updateRoutineActivity({ id, ...fields }) {
 }
 
 async function destroyRoutineActivity(id) {
-  console.log(id)
+  // console.log(id)
   try {
     await client.query(`
       DELETE FROM routineactivities
@@ -95,15 +95,15 @@ async function destroyRoutineActivity(id) {
 
 }
 
-async function canEditRoutineActivity(routineActivityId, userId) {
-  console.log(routineActivityId)
-  console.log (userId)
-    if(x){
+// async function canEditRoutineActivity(routineActivityId, userId) {
+//   console.log(routineActivityId)
+//   console.log (userId)
+//     if(x){
       
-    }
+//     }
 
 
-}
+// }
 
 module.exports = {
   getRoutineActivityById,
