@@ -11,7 +11,8 @@ import Register from "./Register"
 import Profile from "./profile"
 import "./styles.css"
 import WorkoutPost from "./WorkoutPost"
-
+import ActivityPost from "./postActivity"
+import WorkoutActivityAll from "./WorkoutActivity"
 
 const app = document.getElementById("app")
 
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path: "/WorkoutPost",
                 element: <WorkoutPost/>
+            },
+            {
+                path: "/ActivityPost",
+                element: <ActivityPost/>
+            },
+            {
+                path: "/WorkoutActivityAll",
+                element: <WorkoutActivityAll/>
             }
         ]
         

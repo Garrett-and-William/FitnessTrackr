@@ -10,9 +10,11 @@ const NavBar = () => {
                 <div className = "FirstHalf">
                     <Link to = "/" className = "NavButton">Homepage</Link>
                     <Link to = "/Workouts" className = "NavButton">Workouts</Link>
+                    <Link to = "/WorkoutActivityAll" className = "NavButton">All Activities</Link>
                 </div>
                 <div className = "SecondHalf">
-                    <Link to = "/WorkoutPost" className = "NavButton">WorkoutPost</Link>
+                    <Link to = "/WorkoutPost" className = "NavButton">Post Workout</Link>
+                    <Link to = "/ActivityPost" className = "NavButton">Post Activity</Link>
                     <Link to = "/Login" className = "NavButton">Login</Link>
                     <Link to = "/Register" className = "NavButton">Register</Link>
                     <Link to = "/Profile" className = "NavButton">Profile</Link>
