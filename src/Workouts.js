@@ -3,29 +3,31 @@ import {Link} from "react-router-dom"
 
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
-    async function GetAllWorkouts () {
-        try{
-            const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', 
-            {
-                headers : {
-                    'Content-Type': 'application/json'
-                }
-            })
-            const results = await data.json()
-            setWorkouts(results)
-            console.log(results)
-        } catch(error){
-            console.log(error)
-        }
-        
-       }
-       
-
-       useEffect(GetAllWorkouts, 
-        [])
+    useEffect(()=> {
+        async function getAllWorkouts () {
+            try{
+                const data = await fetch('http://localhost:1337/api/routines', 
+                {
+                    headers : {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const results = (await data.json()).publicRoutines
+                setWorkouts(results)
+                console.log(results)
+            } catch(error){
+                console.log(error)
+            }
+    
+           }
+           getAllWorkouts()
+            }
+    
+        ,[])
 
     return (
             <div className = "LowerValue">
+                {/* {console.log(workouts.publicRoutines)} */}
                 {workouts && workouts.length ? workouts.map(el => {
                 return  <div className = "WorkoutContainer" key = {el.id}> 
                         <div className = "WorkoutTitle">{el.name}</div> 

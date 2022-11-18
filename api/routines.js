@@ -9,8 +9,8 @@ const { requireUser } = require('./utils');
 
 routinesRouter.get('/', async (req, res, next) => {
     try {
-      const allRoutines = await getAllRoutines();
-  
+      const allRoutines= await getAllRoutines();
+  console.log(allRoutines)
       const publicRoutines = allRoutines.filter(publicRoutines => {
         // retrieve all public routines
         if (publicRoutines.isPublic) {
@@ -25,7 +25,7 @@ routinesRouter.get('/', async (req, res, next) => {
         // none of the above are true
         return false;
       });
-    
+    // console.log(publicRoutines)
       res.send({
         publicRoutines
       });

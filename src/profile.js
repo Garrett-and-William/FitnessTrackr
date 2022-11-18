@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 const Profile = () => {
     async function getMyRoutines(){
-        const request = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/albert/routines', {
+        const request = await fetch('http://localhost:1337/api/users/me', {
             headers: {
               'Content-Type': 'application/json',
             },
