@@ -52,29 +52,34 @@ async function getActivityByName(name) {
 }
 
 async function attachActivitiesToRoutines(routines) {
-    
+  // no side effects
+  const routinesToReturn = [...routines];
+  const binds = routines.map((_, index) => `$${index + 1}`).join(', ');
+  const routineIds = routines.map(routine => routine.id);
+  if (!routineIds?.length) return [];
   
-  try{
-    // console.log("starting routines get")
-      const { rows } = await client.query(`
-      SELECT "activityId" FROM routineactivities
-      WHERE "routineId" = ${routines.id};
-      `)
+  try {
+    // get the activities, JOIN with routine_activities (so we can get a routineId), and only those that have those routine ids on the routine_activities join
+    const { rows: activities } = await client.query(`
+      SELECT activities.*, routineactivities.duration, routineactivities.count, routineactivities.id AS "routineActivityId", routineactivities."routineId"
+      FROM activities 
+      JOIN routineactivities ON routineactivities."activityId" = activities.id
+      WHERE routineactivities."routineId" IN (${ binds });
+    `, routineIds);
 
-
-      const idvalues = rows.map((key) => {return key.activityId})
-      const indexVal = idvalues.map((_, index) => {return `$${index + 1}`}).join(", ")
-
-      const getValues = await client.query(`
-      SELECT name,description FROM activities 
-      WHERE id IN (${indexVal});
-      `, idvalues)
-
-      routines.activity = getValues.rows;
-      console.log("finishing routines get")
-      return routines
-  }catch(error){
-    console.log(error)
+    // loop over the routines
+    for(const routine of routinesToReturn) {
+      // filter the activities to only include those that have this routineId
+      const activitiesToAdd = activities.filter(activity => activity.routineId === routine.id);
+      // attach the activities to each single routine
+      routine.activities = activitiesToAdd;
+    }
+   
+    // console.log(routinesToReturn)
+    return routinesToReturn;
+    
+  } catch (error) {
+    throw error;
   }
 }
 

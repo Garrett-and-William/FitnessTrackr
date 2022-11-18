@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
 
 const Profile = () => {
+
     const [user, setUser] = useState()
     const [info, setInfo] = useState()
     
@@ -44,6 +45,7 @@ async function getMyRoutines(){
             setInfo(response)
             } catch(error){
         console.log(error)
+
     }
     }   
 }

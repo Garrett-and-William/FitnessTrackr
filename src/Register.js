@@ -30,7 +30,7 @@ const Register = () => {
                 } else {
                     alert (results.message)
                 }
-                 if (results.user.id){
+                if (results.user.id){
                      navigate("../")
                 }
                 
