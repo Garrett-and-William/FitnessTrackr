@@ -41,14 +41,15 @@ async function getRoutinesWithoutActivities() {
 }
 async function getAllRoutines() {
   try {
-    const { rows } = await client.query(`
-    SELECT * FROM routines;
-    `)
-    return rows
+    const { rows: routines } = await client.query(`
+    SELECT routines.*, users.username AS "creatorName"
+    FROM routines
+    JOIN users ON routines."creatorId" = users.id 
+    `);
+    return attachActivitiesToRoutines(routines);
   } catch (error) {
-    console.log(error)
+    throw error
   }
-
 }
 
 async function getAllPublicRoutines() {
