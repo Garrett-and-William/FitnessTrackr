@@ -9,7 +9,7 @@ const Login = () => {
    async function logInApi (event) {
     event.preventDefault()
     try{
-        const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', 
+        const data = await fetch('http://localhost:1337/api/users/login', 
         {
             method : "POST",
             headers : {
@@ -22,12 +22,12 @@ const Login = () => {
         })
         const results = await data.json()
         console.log(results)
-        if (results.success == true) {
+        if (results.token) {
             localStorage.setItem("token", results.token)
         } else {
             alert (results.message)
         }
-        if (results.user.id){
+        if (results.token){
             navigate("../")
         }
     } catch(error){
@@ -55,7 +55,7 @@ const Login = () => {
             </div>
             <div className = "TypingInput">
                 <div>Input New Password </div>
-                <input type = "text" value = {password} onChange={changePass}></input>
+                <input type = "password" value = {password} onChange={changePass}></input>
             </div>
             <div className = "submitcontain">
                <button type = "submit">Login</button>

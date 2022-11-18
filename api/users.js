@@ -8,8 +8,8 @@ const {
     getPublicRoutinesByUser } = require('../db');
 
 const  bcrypt  = require("bcrypt");
-
 const jwt = require('jsonwebtoken');
+
 
 
 // POST /api/users/login
@@ -52,6 +52,7 @@ usersRouter.post('/login', async (req, res, next) => {
 
 // POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {
+  // console.log('made it to api')
     const { username, password} = req.body;
   
     try {
@@ -68,6 +69,7 @@ usersRouter.post('/register', async (req, res, next) => {
         username,
         password
       });
+      
   
       const token = jwt.sign({id: user.id, 
         username: username 
@@ -75,6 +77,7 @@ usersRouter.post('/register', async (req, res, next) => {
         expiresIn: '1w'});
   
       res.send({ 
+        user,
         message: "You are ready to start tracking your fitness journey",
         token 
       });

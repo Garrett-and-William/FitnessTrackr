@@ -1,11 +1,13 @@
+require("dotenv").config('./env');
 const express = require("express")
 const morgan = require("morgan")
 const apiRouter = require('./api')
+const cors = require('cors')
 
 
-require("dotenv").config()
 
 const app = express();
+app.use(cors())
 const  client  = require("./db/client")
 app.use(morgan("dev"));
 
@@ -22,7 +24,7 @@ app.use((req, res, next) => {
 
 
 
-const port = 3000;
+const port = 1337;
 app.listen(port, ()=> {
     console.log(`Even the Flash can't handle PORT ${port}`)
 })

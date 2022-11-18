@@ -5,7 +5,7 @@ import {Link, useParams} from "react-router-dom"
 const WorkoutActivityPost = () => {
     try{
         async function getActivity (){
-            fetch('http://fitnesstrac-kr.herokuapp.com/api/activities/9', {
+            fetch('http://fitnesstrac-kr.herokuapp.com/api/activities/', {
                 method: "PATCH",
                 body: JSON.stringify({
                         name: 'Running',
