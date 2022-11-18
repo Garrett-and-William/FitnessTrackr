@@ -1,6 +1,6 @@
 const express = require('express');
 const routinesRouter = express.Router();
-const { getAllRoutines, getRoutineById, updateRoutine, destroyRoutine, destroyRoutineActivity, getActivityById, } = require("../db")
+const { getAllRoutines, getRoutineById, updateRoutine, destroyRoutine, destroyRoutineActivity, getActivityById, createRoutine } = require("../db")
 
 const { requireUser } = require('./utils');
 
