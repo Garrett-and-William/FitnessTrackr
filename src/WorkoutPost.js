@@ -9,7 +9,7 @@ const WorkoutPost = () => {
     async function postWorkout(event){
         event.preventDefault()
         try {
-            const request = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
+            const request = await fetch('http://localhost:1337/api/routines', {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -20,9 +20,10 @@ const WorkoutPost = () => {
                   isPublic: isTrue
                 })
               })
-            const response = await request.json()
-            console.log(response)
+            const response = (await request.json()).rows[0]
+            console.log(response.id)
             if(response.id){
+                console.log('here')
                 navigate("../Workouts")
             }
             

@@ -87,40 +87,40 @@ usersRouter.post('/register', async (req, res, next) => {
   });
 
 // GET /api/users/me
-usersRouter.post('/me', async (req, res, next) => {
-    const {username, password} = req.body;
-    const user = await getUser(username, password)
-   
-    if(!user){
-        next({
-            name: 'notLoggedIn',
-            message: 'You must be logged in to continue!'
-    })
-    try {
-       const profile =  await Promise.all (
-        getUserByUserName(username),
-        getAllRoutinesByUser(username),
-
-       )
+usersRouter.get('/me', async (req, res, next) => {
+    const {username, password} = req.user;
+    // console.log(req.user)
     
-   return profile
+    
+    
+   
+    // if(!user){
+    //     next({
+    //         name: 'notLoggedIn',
+    //         message: 'You must be logged in to continue!'
+    // })
+    try {
+    const user = await getUser(username, password)
+    console.log('/me', user)
+   res.send(user)
     } catch ({ name, message }) {
       next({ name, message })
     } 
     }
-});
+// }
+);
 
 
 
 // GET /api/users/:username/routines
 usersRouter.get('/:username/routines', async (req, res, next) => {
     
-    const username = req.params;
-    console.log(username)
+    const username = req.params.username;
+    // console.log('params', username)
     try {
      
-      const routines = await getPublicRoutinesByUser(username)
-  console.log(routines)
+      const routines = await getPublicRoutinesByUser({username: username})
+  console.log('this is the get', routines)
       res.send(routines)
   
     } catch ({ name, message }) {
