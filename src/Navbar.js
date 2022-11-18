@@ -12,6 +12,7 @@ const NavBar = () => {
                     <Link to = "/Workouts" className = "NavButton">Workouts</Link>
                 </div>
                 <div className = "SecondHalf">
+                    <Link to = "/WorkoutPost" className = "NavButton">WorkoutPost</Link>
                     <Link to = "/Login" className = "NavButton">Login</Link>
                     <Link to = "/Register" className = "NavButton">Register</Link>
                     <Link to = "/Profile" className = "NavButton">Profile</Link>

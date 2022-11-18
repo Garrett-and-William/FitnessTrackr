@@ -9,6 +9,8 @@ const Login = () => {
    async function logInApi (event) {
     event.preventDefault()
     try{
+        //http://fitnesstrac-kr.herokuapp.com
+        //http://localhost:1337
         const data = await fetch('http://localhost:1337/api/users/login', 
         {
             method : "POST",
