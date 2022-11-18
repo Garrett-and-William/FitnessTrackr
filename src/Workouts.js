@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
     useEffect(()=> {
+
         async function getAllWorkouts () {
             try{
                 const data = await fetch('http://localhost:1337/api/routines', 
