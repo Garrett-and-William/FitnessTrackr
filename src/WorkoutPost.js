@@ -6,6 +6,7 @@ const WorkoutPost = () => {
     const [description, setDescription] = useState("")
     const navigate = useNavigate()
     const [isTrue, setIsTrue] = useState(true)
+
     async function postWorkout(event){
         event.preventDefault()
         try {
@@ -20,15 +21,16 @@ const WorkoutPost = () => {
                   isPublic: isTrue
                 })
               })
-            const response = (await request.json()).rows[0]
-            console.log(response.id)
-            if(response.id){
-                console.log('here')
+            const response = (await request.json())
+            console.log('response', response)
+            if(response){
+                alert('Routine has posted')
                 navigate("../Workouts")
             }
             
         } catch (error) {
             console.log(error)
+            alert('Please log in to make a Routine')
         }
         
     }
