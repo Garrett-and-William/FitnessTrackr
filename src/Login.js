@@ -40,12 +40,12 @@ const Login = () => {
    }
    
    function changePass (event) {
-    console.log(password)
+    // console.log(password)
     setPassword(event.target.value)
     
     }
    function changeUser (event) {
-    console.log(username)
+    // console.log(username)
     setUsername(event.target.value)
     
     }

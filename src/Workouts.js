@@ -37,7 +37,7 @@ const Workouts = () => {
                         <div>Activities:</div>
                         <div className = "activitiesContainer">
                         
-                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities"> {ele.name}: Duration -- {ele.count} Count-- {ele.count}
+                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities" key = {ele.id}> {ele.name}: Duration -- {ele.count} Count-- {ele.count}
                         <Link to = {`/WorkoutActivityAll/${ele.id}/routines`}> View Activity</Link>
                         
                         </div>}): "No Activities attached to Routine"}

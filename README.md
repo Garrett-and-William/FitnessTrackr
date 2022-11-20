@@ -22,7 +22,7 @@ As an unregistered visitor I want to:
 
 --Done--see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal
 --Done--be able to sign up for a new account with valid username/password combination
---see meaningful messages if there are errors during registration, so that I may correct them
+--Done--see meaningful messages if there are errors during registration, so that I may correct them
 --Done--see tabbed navigation for Routines and Activities (with matching routes)
 
 As a registered user I want to:
@@ -30,7 +30,7 @@ As a registered user I want to:
 --Done--be able to log in with my username/password combination
 --Done--see meaningful messages if there are errors during login, so that I may correct them
 --Done--stay logged in between page visits (for example, if I close my browser, and come back later)
---be able to log out if I am logged in
+--Done--be able to log out if I am logged in
 --Done--see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
 
 3)Routines
@@ -82,8 +82,8 @@ As a registered user, on the My Routines tab, I want to:
 
 As any user on the Activities tab, I want to:
 
---be able to click on an activity name and see a list of all public routines which feature it
+--Done--be able to click on an activity name and see a list of all public routines which feature it
 
 As a registered user on the Activities tab, I want to:
 
---be able to edit an existing activity, and update the description, regardless of who owns it
+--Done--be able to edit an existing activity, and update the description, regardless of who owns it
