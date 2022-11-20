@@ -16,7 +16,7 @@ const ActivityPatch = () => {
         
         // console.log(activityId)
         try {
-            const request = await fetch(`http://localhost:1337/api/activities/${activityId}`, {
+            const request = await fetch(`https://garrettwilliamfitness.onrender.com/api/activities/${activityId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type" : "application/json",

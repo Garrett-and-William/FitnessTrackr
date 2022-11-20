@@ -12,7 +12,7 @@ const Register = () => {
             // console.log(username, password) 
 
             try{
-                const data = await fetch('http://localhost:1337/api/users/register', 
+                const data = await fetch('https://garrettwilliamfitness.onrender.com/api/users/register', 
                 {
                     method : "POST",
                     headers : {

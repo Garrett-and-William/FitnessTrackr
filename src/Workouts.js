@@ -7,7 +7,7 @@ const Workouts = () => {
 // console.log(process.env.DB_URL)
         async function getAllWorkouts () {
             try{
-                const data = await fetch(`$https://garrettwilliamfitness.onrender.com//api/routines`, 
+                const data = await fetch(`https://garrettwilliamfitness.onrender.com/api/routines`, 
                 {
                     headers : {
                         'Content-Type': 'application/json'

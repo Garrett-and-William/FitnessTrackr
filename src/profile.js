@@ -15,7 +15,7 @@ const Profile = () => {
         // console.log('made it to front end')
         try{
             async function getActivity(){
-                const response = await fetch('http://localhost:1337/api/activities', {
+                const response = await fetch('https://garrettwilliamfitness.onrender.com/api/activities', {
                     headers: {
                       'Content-Type': 'application/json',
                     }

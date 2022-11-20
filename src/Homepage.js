@@ -5,7 +5,7 @@ const Homepage = () => {
     
     async function isUserLoggedIn() {
         try{
-            const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/me', 
+            const data = await fetch('https://garrettwilliamfitness.onrender.com/api/users/me', 
             {
                 headers : {
                     'Content-Type': 'application/json',
