@@ -36,7 +36,7 @@ useEffect(() => {
     async function isUserLoggedIn() {
         // console.log(`${localStorage.getItem("token")}`)
         try{
-            const data = await fetch('http://localhost:1337/api/users/me', 
+            const data = await fetch('https://garrettwilliamfitness.onrender.com/api/users/me', 
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ async function getMyRoutines(){
     // console.log('profile user', user)
     if(user != undefined){
         try{
-            const request = await fetch(`http://localhost:1337/api/users/${user}/routines`, {
+            const request = await fetch(`https://garrettwilliamfitness.onrender.com/api/users/${user}/routines`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -87,7 +87,7 @@ getMyRoutines()
 async function deleteFrom (id){
     // console.log(id)
     try {
-        const req = await fetch(`http://localhost:1337/api/routines/${id}`, {
+        const req = await fetch(`https://garrettwilliamfitness.onrender.com/api/routines/${id}`, {
             method: "DELETE",
             headers: {
               'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ async function changeId(id){
 async function attachActivity(event){
     event.preventDefault()
     try {
-        const req = await fetch(`http://localhost:1337/api/routines/${changeStateId}/activities`, {
+        const req = await fetch(`https://garrettwilliamfitness.onrender.com/api/routines/${changeStateId}/activities`, {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
