@@ -1,34 +1,43 @@
 import {useState, useEffect} from "react"
-import {Link, useNavigate } from "react-router"
+import {Link, useNavigate, useParams } from "react-router"
+// import {} from 'react-router-dom'
 
-const ActivityPost = () => {
+
+const ActivityPatch = () => {
     const [workoutName, setWorkoutName] = useState("")
     const [description, setDescription] = useState("")
     const navigate = useNavigate()
     const [isTrue, setIsTrue] = useState(true)
-    async function postWorkout(event){
+    const {activityId} = useParams();
+
+    async function patchWorkout(event){
+        
         event.preventDefault()
+        
+        console.log(activityId)
         try {
-            const request = await fetch('http://localhost:1337/api/activities', {
-                method: "POST",
+            const request = await fetch(`http://localhost:1337/api/activities/${activityId}`, {
+                method: "PATCH",
                 headers: {
                     "Content-Type" : "application/json",
                     "Authorization" : `Bearer ${localStorage.getItem("token")}`
-                },body: JSON.stringify({
+                },
+                body: JSON.stringify({
                   name: workoutName,
                   description: description
                 })
               })
-            const response = (await request.json()).rows[0];
+            const response = await request.json();
             console.log(response)
-            alert('Activity Created')
+            
             if(response.id){
                 navigate("../WorkoutActivityAll")
+                alert('Activity Changed')
             }
             
         } catch (error) {
             console.log(error)
-            alert(error)
+            // alert(error)
         }
         
     }
@@ -50,17 +59,17 @@ const ActivityPost = () => {
 
     return(
         <div className = "container">
-            <form onSubmit = {postWorkout}>
+            <form onSubmit = {patchWorkout}>
                 <div className = "TypingInput">
-                    <div Style = "display: flex;text-align: left">Activity Name: <input type = "text" value = {workoutName} onChange = {changeName}></input></div>
+                    <div Style = "display: flex;text-align: left">Edit Activity Name: <input type = "text" value = {workoutName} onChange = {changeName}></input></div>
                     
                 </div>
                 <div className = "TypingInput">
-                    <div>Description</div>
+                    <div>Edit Description</div>
                     <textarea Style = "width: 100%; height: 10vh; padding: 10px; text-align: top-left: start;" type = "text" value = {description} onChange = {changeDescription}></textarea>
                 </div>
                 <div className = "submitcontain">
-                   <button type = "submit">Post Workout</button>
+                   <button type = "submit">Edit Workout</button>
                 </div>
             </form>
         </div>
@@ -68,4 +77,4 @@ const ActivityPost = () => {
 
 }
 
-export default ActivityPost
+export default ActivityPatch

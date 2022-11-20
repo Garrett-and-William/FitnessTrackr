@@ -13,6 +13,7 @@ import "./styles.css"
 import WorkoutPost from "./WorkoutPost"
 import ActivityPost from "./postActivity"
 import WorkoutActivityAll from "./WorkoutActivity"
+import PatchActivity from "./PatchActivity"
 
 const app = document.getElementById("app")
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: "/WorkoutActivityAll",
                 element: <WorkoutActivityAll/>
+            },
+            {
+                path: "/WorkoutActivityAll/:activityId",
+                element: <PatchActivity/>
             }
         ]
         
