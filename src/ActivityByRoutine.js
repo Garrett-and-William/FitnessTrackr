@@ -34,7 +34,6 @@ const ActivityByRoutine = () => {
             
                 <div className = "WorkoutTitle">{el.name}</div>
                 <div className = "WorkoutDescription">{el.goal}</div>
-                
                 <Link to = {`/WorkoutActivityAll/${el.id}`}> Edit Activity</Link>
                 
             </div>}): "This Activity is not attached to any Public Routines"}
