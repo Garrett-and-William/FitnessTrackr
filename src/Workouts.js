@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
-
+const { DB_URL } = process.env;
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
     useEffect(()=> {
-
+// console.log(process.env.DB_URL)
         async function getAllWorkouts () {
             try{
-                const data = await fetch('http://localhost:1337/api/routines', 
+                const data = await fetch(`$https://garrettwilliamfitness.onrender.com//api/routines`, 
                 {
                     headers : {
                         'Content-Type': 'application/json'
