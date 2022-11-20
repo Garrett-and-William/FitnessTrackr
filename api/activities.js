@@ -27,8 +27,8 @@ activitiesRouter.get('/:activityId/routines', async (req, res, next) => {
 activitiesRouter.get('/', async (req, res, next) => {
     try {
       const allActivities = await getAllActivities();
-    // console.log('activie api', active)
-    console.log('active api main', allActivities)
+
+    // console.log('active api main', allActivities)
       res.send(
         allActivities
       );
@@ -69,7 +69,9 @@ activitiesRouter.post('/', requireUser, async (req, res, next) => {
 // PATCH /api/activities/:activityId
 
 activitiesRouter.patch('/:activityId', requireUser, async (req, res, next) => {
-    const { aid } = req.params;
+  // console.log(req.params)  
+  const aid = req.params;
+    // console.log('activity id', aid)
     const { name, description } = req.body;
   
     const updateFields = {};
@@ -78,7 +80,7 @@ activitiesRouter.patch('/:activityId', requireUser, async (req, res, next) => {
       updateFields.name = name;
     }
   
-    if (goal) {
+    if (description) {
       updateFields.description = description;
     }
 
@@ -86,6 +88,7 @@ activitiesRouter.patch('/:activityId', requireUser, async (req, res, next) => {
   
       if (req.user) {
         const updatedActivity = await updateActivity(aid, updateFields);
+        // console.log('This is the patched', {updatedActivity})
         res.send({ updatedActivity })
       } else {
         next({
