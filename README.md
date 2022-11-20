@@ -23,7 +23,7 @@ As an unregistered visitor I want to:
 --Done--see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal
 --Done--be able to sign up for a new account with valid username/password combination
 --see meaningful messages if there are errors during registration, so that I may correct them
---see tabbed navigation for Routines and Activities (with matching routes)
+--Done--see tabbed navigation for Routines and Activities (with matching routes)
 
 As a registered user I want to:
 
@@ -39,31 +39,31 @@ As any user on the Routines tab, I want to:
 
 --Done--see a list of all public routines showing:
 --Done--The routine name, goal, and creator's username
---A list of activities for the routine, including their name, description, and duration and/or count
+--Done--A list of activities for the routine, including their name, description, and duration and/or count
 
 As a registered user on the My Routines tab, I want to:
 
---be shown a form to create a new routine
+--Done--be shown a form to create a new routine
 
     the form should have text fields for name and goal
 
 --for each routine which is owned by me I should
         be able to update the name and goal for the routine
-        be able to delete the entire routine
+        --done--be able to delete the entire routine
         be able to add an activity to a routine via a small form which has a dropdown for all activities, an inputs for count and duration
-        be able to update the duration or count of any activity on the routine
+        --done--be able to update the duration or count of any activity on the routine
         be able to remove any activity from the routine
 
 4)Activities
 
 As an unregistered visitor on the Activities tab, I want to:
 
---see a list of all activities which have been created
+--Done--see a list of all activities which have been created
 
 As a registered user on the Activities tab, I want to:
 
---be shown a form to create a new activity (by name and description)
---be shown an error if the activity already exists
+--Done--be shown a form to create a new activity (by name and description)
+--Done--be shown an error if the activity already exists
 
 BONUS--STRETCH GOALS
 

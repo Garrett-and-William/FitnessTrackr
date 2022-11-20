@@ -2,7 +2,7 @@
     font-family: 'Oswald', sans-serif;
 }
 body{
-    margin: 0
+    margin: 4px;
 }
 .NavBar{
     width: 100vw;
@@ -10,6 +10,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: aqua;
+    border-bottom: 1px;
 }
 .Title{
     justify-content: center;
@@ -23,13 +24,13 @@ body{
     color: black
 }
 .FirstHalf{
-    width: 50%;
+    width: 49%;
     height: 5vh;
     display: flex;
 
 }
 .SecondHalf{
-    width: 50%;
+    width: 49%;
     height: 5vh;
     display: flex;
     justify-content: right;
@@ -83,6 +84,7 @@ button{
     align-self: center;
     align-items: center;
     text-align: center;
+    box-shadow: 10px 10px 10px black;
 
 }
 .WorkoutContainer{
@@ -94,6 +96,7 @@ button{
     border-radius: 10px;
     padding: 1vh;
     margin: 1vh;
+    box-shadow: 5px 5px 5px black;
 }
 .WorkoutTitle{
     font-size: 3vh;
@@ -105,9 +108,15 @@ button{
 }
 .activitiesContainer{
     display: flex;
+    flex-direction: column;
     width: auto;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.active{
+    display: flex;
+    
 }
 

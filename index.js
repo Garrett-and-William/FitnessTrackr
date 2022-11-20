@@ -8,7 +8,7 @@ const cors = require('cors')
 
 const app = express();
 app.use(cors())
-const  client  = require("./db/client")
+const client  = require("./db/client")
 app.use(morgan("dev"));
 
 client.connect()

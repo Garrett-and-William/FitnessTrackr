@@ -22,7 +22,7 @@ const WorkoutPost = () => {
                 })
               })
             const response = (await request.json())
-            console.log('response', response)
+            // console.log('response', response)
             if(response){
                 alert('Routine has posted')
                 navigate("../Workouts")
@@ -38,15 +38,15 @@ const WorkoutPost = () => {
 
     async function changeName(event){
         setWorkoutName(event.target.value)
-        console.log(workoutName)
+        // console.log(workoutName)
     }
     async function changeDescription(event){
         setDescription(event.target.value)
-        console.log(description)
+        // console.log(description)
     }
     async function changeIsTrue(event){
         setIsTrue(event.target.value)
-        console.log(isTrue)
+        // console.log(isTrue)
         
     }
 

@@ -23,7 +23,7 @@ const Login = () => {
             
         })
         const results = await data.json()
-        console.log(results)
+        // console.log(results)
         if (results.token) {
             localStorage.setItem("token", results.token)
         } else {
@@ -31,6 +31,7 @@ const Login = () => {
         }
         if (results.token){
             navigate("../")
+            alert(results.message)
         }
     } catch(error){
         console.log(error)

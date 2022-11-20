@@ -17,7 +17,7 @@ const ActivityByRoutine = () => {
                     }
                   })
                 const data = await response.json()
-                console.log(' this is the all data', data)
+                // console.log(' this is the all data', data)
                 setInfo(data)
             } 
             getRoutineByActivity()  
@@ -26,8 +26,8 @@ const ActivityByRoutine = () => {
         }
         
     },[])
-  console.log('this is the info', info)
-  console.log('this is the length', info.length)
+//   console.log('this is the info', info)
+//   console.log('this is the length', info.length)
     return (
         <div  className = "LowerValue">
             {info && info.length ? info.map((el)=> {return <div className = "WorkoutContainer" key = {el.id}>
