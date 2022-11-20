@@ -89,7 +89,7 @@ activitiesRouter.patch('/:activityId', requireUser, async (req, res, next) => {
       if (req.user) {
         const updatedActivity = await updateActivity(aid, updateFields);
         // console.log('This is the patched', {updatedActivity})
-        res.send({ updatedActivity })
+        res.send(updatedActivity)
       } else {
         next({
           name: 'UnauthorizedUserError',

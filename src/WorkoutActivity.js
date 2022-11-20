@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import {Link, useParams} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
 const WorkoutActivityAll = () => {
@@ -31,6 +31,7 @@ const WorkoutActivityAll = () => {
                 <div className = "WorkoutTitle">{el.name}</div>
                 <div className = "WorkoutDescription">{el.description}</div>
                 <Link to = "/">All Routines Related to {el.name}</Link>
+                <Link to = {`/WorkoutActivityAll/${el.id}`}> Edit Activity</Link>
                 
             </div>}): "sorry internet connection not valid"}
         </div>

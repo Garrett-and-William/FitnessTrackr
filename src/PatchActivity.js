@@ -1,15 +1,22 @@
 import {useState, useEffect} from "react"
-import {Link, useNavigate } from "react-router"
+import {Link, useNavigate, useParams } from "react-router"
+// import {} from 'react-router-dom'
+
 
 const ActivityPatch = () => {
     const [workoutName, setWorkoutName] = useState("")
     const [description, setDescription] = useState("")
     const navigate = useNavigate()
     const [isTrue, setIsTrue] = useState(true)
+    const {activityId} = useParams();
+
     async function patchWorkout(event){
+        
         event.preventDefault()
+        
+        console.log(activityId)
         try {
-            const request = await fetch('http://localhost:1337/api/activities/1', {
+            const request = await fetch(`http://localhost:1337/api/activities/${activityId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type" : "application/json",
