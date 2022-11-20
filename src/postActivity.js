@@ -9,7 +9,7 @@ const ActivityPost = () => {
     async function postWorkout(event){
         event.preventDefault()
         try {
-            const request = await fetch('http://localhost:1337/api/activities', {
+            const request = await fetch('https://garrettwilliamfitness.onrender.com/api/activities', {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
