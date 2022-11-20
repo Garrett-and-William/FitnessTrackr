@@ -5,7 +5,7 @@ import {Link, useParams} from "react-router-dom"
 const WorkoutActivityAll = () => {
     const [info, setInfo] = useState([])
     useEffect(()=>{
-        console.log('made it to front end')
+        // console.log('made it to front end')
         try{
             async function getActivity(){
                 const response = await fetch('http://localhost:1337/api/activities', {
@@ -14,7 +14,7 @@ const WorkoutActivityAll = () => {
                     }
                   })
                 const data = await response.json()
-                console.log(' this is the all activities', data)
+                // console.log(' this is the all activities', data)
                 setInfo(data)
             } 
             getActivity()  

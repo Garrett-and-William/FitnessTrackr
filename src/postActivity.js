@@ -9,7 +9,7 @@ const ActivityPost = () => {
     async function postWorkout(event){
         event.preventDefault()
         try {
-            const request = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+            const request = await fetch('http://localhost:1337/api/activities', {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json",
@@ -19,14 +19,16 @@ const ActivityPost = () => {
                   description: description
                 })
               })
-            const response = await request.json()
+            const response = (await request.json()).rows[0];
             console.log(response)
+            alert('Activity Created')
             if(response.id){
                 navigate("../WorkoutActivityAll")
             }
             
         } catch (error) {
             console.log(error)
+            alert(error)
         }
         
     }
@@ -34,15 +36,15 @@ const ActivityPost = () => {
 
     async function changeName(event){
         setWorkoutName(event.target.value)
-        console.log(workoutName)
+        // console.log(workoutName)
     }
     async function changeDescription(event){
         setDescription(event.target.value)
-        console.log(description)
+        // console.log(description)
     }
     async function changeIsTrue(event){
         setIsTrue(event.target.value)
-        console.log(isTrue)
+        // console.log(isTrue)
         
     }
 
