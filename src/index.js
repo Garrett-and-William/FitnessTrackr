@@ -62,7 +62,7 @@ const router = createBrowserRouter([
                 element: <PatchActivity/>
             },
             {
-                path: "WorkoutActivityAll/:activeId/routines",
+                path: "WorkoutActivityAll/:activityId/routines",
                 element: <ActivityByRoutine/>
             }
         ]
