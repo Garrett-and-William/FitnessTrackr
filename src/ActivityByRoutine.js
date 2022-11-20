@@ -1,14 +1,14 @@
 import {useState, useEffect} from "react"
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 
-
-const WorkoutActivityAll = () => {
+const ActivityByRoutine = () => {
     const [info, setInfo] = useState([])
+    const activityId = useParams()
     useEffect(()=>{
         // console.log('made it to front end')
         try{
-            async function getActivity(){
-                const response = await fetch('http://localhost:1337/api/activities', {
+            async function getRoutineByActivity(){
+                const response = await fetch(`http://localhost:1337/api/activities/${activityId}/routines`, {
                     headers: {
                       'Content-Type': 'application/json',
                     }
@@ -17,7 +17,7 @@ const WorkoutActivityAll = () => {
                 // console.log(' this is the all activities', data)
                 setInfo(data)
             } 
-            getActivity()  
+            getRoutineByActivity()  
         }catch(error){
             console.log(error)
         }
@@ -30,7 +30,7 @@ const WorkoutActivityAll = () => {
                 
                 <div className = "WorkoutTitle">{el.name}</div>
                 <div className = "WorkoutDescription">{el.description}</div>
-                <Link to = {`/WorkoutActivityAll/${el.id}/routines`}>All Routines Related to {el.name}</Link>
+                
                 <Link to = {`/WorkoutActivityAll/${el.id}`}> Edit Activity</Link>
                 
             </div>}): "sorry internet connection not valid"}
@@ -39,4 +39,4 @@ const WorkoutActivityAll = () => {
 
 }
 
-export default WorkoutActivityAll
+export default ActivityByRoutine

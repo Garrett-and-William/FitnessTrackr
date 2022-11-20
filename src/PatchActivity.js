@@ -14,7 +14,7 @@ const ActivityPatch = () => {
         
         event.preventDefault()
         
-        console.log(activityId)
+        // console.log(activityId)
         try {
             const request = await fetch(`http://localhost:1337/api/activities/${activityId}`, {
                 method: "PATCH",
