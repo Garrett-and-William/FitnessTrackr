@@ -5,20 +5,21 @@ import {Link, useParams} from "react-router-dom"
 const WorkoutActivityAll = () => {
     const [info, setInfo] = useState([])
     useEffect(()=>{
+        console.log('made it to front end')
         try{
             async function getActivity(){
-                const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+                const response = await fetch('http://localhost:1337/api/activities', {
                     headers: {
                       'Content-Type': 'application/json',
-                    },
+                    }
                   })
                 const data = await response.json()
-                console.log(data)
+                console.log(' this is the all activities', data)
                 setInfo(data)
             } 
             getActivity()  
         }catch(error){
-            console.log()
+            console.log(error)
         }
         
     },[])

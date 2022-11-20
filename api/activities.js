@@ -27,10 +27,11 @@ activitiesRouter.get('/:activityId/routines', async (req, res, next) => {
 activitiesRouter.get('/', async (req, res, next) => {
     try {
       const allActivities = await getAllActivities();
-    
-      res.send({
+    // console.log('activie api', active)
+    console.log('active api main', allActivities)
+      res.send(
         allActivities
-      });
+      );
     } catch ({ name, message }) {
       next({ name, message });
     }

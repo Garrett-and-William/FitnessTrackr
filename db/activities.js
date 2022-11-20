@@ -17,9 +17,11 @@ async function createActivity({ name, description }) {
 
 async function getAllActivities() {
     try {
-      const {rows} = await client.query(`
-      SELECT * from activities;`)
-      // console.log(rows)
+      const { rows } = await client.query(`
+      SELECT * FROM "activities";`)
+     
+      console.log('this is the active', rows)
+      // console.log('these are the rows', rows)
       return rows
     } catch (error) {
       console.log(error)
