@@ -115,7 +115,7 @@ routinesRouter.delete('/:routineId', requireUser, async (req, res, next) => {
         destroyRoutine(routine.id)
        )
   
-        res.send('Succesfully Deleted');
+        res.send('Successfully Deleted');
       } else {
         //if no routine is found send not found error. If no user then through no user error
         next(routine ? { 
