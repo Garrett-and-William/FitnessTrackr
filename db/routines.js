@@ -1,6 +1,6 @@
 const client = require("./client");
 const { attachActivitiesToRoutines, getActivityById } = require("./activities")
-const { getUserByUserName } = require("./users")
+// const { getUserByUserName } = require("./users")
 
 
 async function createRoutine({ creatorId, isPublic, name, goal }) {
@@ -19,7 +19,7 @@ async function createRoutine({ creatorId, isPublic, name, goal }) {
 }
 
 async function getRoutineById(id) {
-  console.log(id)
+  // console.log(id)
   try {
     const {rows} = await client.query(`
         SELECT * FROM routines
@@ -74,7 +74,7 @@ async function getAllRoutinesByUser({ username }) {
         FROM users
         WHERE username = $1;
         `, [username]);
-        console.log(user)
+        // console.log(user)
     if (!user) {
       return null
     }
@@ -116,17 +116,17 @@ async function getPublicRoutinesByActivity( id ) {
   try {
     // console.log('routebyactive', id)
     const activity = await getActivityById(id)
-    console.log(activity.id)
+    // console.log(activity.id)
     const {rows: [activeroute]} = await client.query(`
       SELECT * FROM routineactivities
       WHERE "activityId" = ${activity.id} 
       ;`)
 
-console.log(activeroute)
+// console.log(activeroute)
 
 
     const routes = await getRoutineById(activeroute.routineId)
-    console.log(routes)
+    // console.log(routes)
       if (routes.isPublic == false){
         return null
       }

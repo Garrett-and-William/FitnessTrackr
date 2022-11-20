@@ -10,7 +10,7 @@ const { requireUser } = require('./utils');
 routinesRouter.get('/', async (req, res, next) => {
     try {
       const allRoutines= await getAllRoutines();
-  console.log(allRoutines)
+  // console.log(allRoutines)
       const publicRoutines = allRoutines.filter(publicRoutines => {
         // retrieve all public routines
         if (publicRoutines.isPublic) {
@@ -51,7 +51,7 @@ routinesRouter.post('/', requireUser, async (req, res, next) => {
       const {rows: [routine]} = await createRoutine(postRoutine);
   
       if (routine) {
-        console.log('routine', routine)
+        // console.log('routine', routine)
         res.send(routine);
         
         
@@ -108,7 +108,7 @@ routinesRouter.patch('/:routineId', requireUser, async (req, res, next) => {
 routinesRouter.delete('/:routineId', requireUser, async (req, res, next) => {
     try {
       const routine = await getRoutineById(req.params.routineId);
-      console.log("this is rout:", routine)
+      // console.log("this is rout:", routine)
       if (routine && routine.creatorId === req.user.id) {
        await Promise.all(
         destroyRoutineActivity(routine.routineId),

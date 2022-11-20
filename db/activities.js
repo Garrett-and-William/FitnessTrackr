@@ -89,10 +89,10 @@ async function updateActivity( id, {...fields}) {
   // don't try to update the id
   // do update the name and description
   // return the updated activity
- console.log(id.activityId)
-  console.log(fields)
+//  console.log(id.activityId)
+//   console.log(fields)
   // const fields = updateFields.updateFields
-  console.log("This is the field:", fields)
+  // console.log("This is the field:", fields)
   const stringify = Object.keys(fields).map((key, index) => {
     return `"${key}" = $${index + 1} `
   }).join(', ')

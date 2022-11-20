@@ -23,7 +23,7 @@ const Login = () => {
             
         })
         const results = await data.json()
-        console.log(results)
+        // console.log(results)
         if (results.token) {
             localStorage.setItem("token", results.token)
         } else {
@@ -31,6 +31,7 @@ const Login = () => {
         }
         if (results.token){
             navigate("../")
+            alert(results.message)
         }
     } catch(error){
         console.log(error)
@@ -39,12 +40,12 @@ const Login = () => {
    }
    
    function changePass (event) {
-    console.log(password)
+    // console.log(password)
     setPassword(event.target.value)
     
     }
    function changeUser (event) {
-    console.log(username)
+    // console.log(username)
     setUsername(event.target.value)
     
     }

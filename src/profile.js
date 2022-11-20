@@ -10,7 +10,7 @@ const Profile = () => {
 
 useEffect(() => {
     async function isUserLoggedIn() {
-        console.log(`${localStorage.getItem("token")}`)
+        // console.log(`${localStorage.getItem("token")}`)
         try{
             const data = await fetch('http://localhost:1337/api/users/me', 
             {
@@ -19,9 +19,9 @@ useEffect(() => {
                     'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
             })
-            console.log('here')
+            // console.log('here')
             const results = await data.json()
-            console.log('is user logged in', results)
+            // console.log('is user logged in', results)
             setUser(results.username)
             
 
@@ -35,7 +35,7 @@ useEffect(() => {
 },[])
 
 async function getMyRoutines(){
-    console.log('profile user', user)
+    // console.log('profile user', user)
     if(user != undefined){
         try{
             const request = await fetch(`http://localhost:1337/api/users/${user}/routines`, {
@@ -45,7 +45,7 @@ async function getMyRoutines(){
         })
             // console.log(await request.json())
             const response = await request.json()
-            console.log(response)
+            // console.log(response)
             setInfo(response)
             } catch(error){
         console.log(error)
@@ -59,7 +59,7 @@ getMyRoutines()
 },[user])
 
 async function deleteFrom (id){
-    console.log(id)
+    // console.log(id)
     try {
         const req = await fetch(`http://localhost:1337/api/routines/${id}`, {
             method: "DELETE",
