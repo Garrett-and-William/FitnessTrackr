@@ -9,6 +9,7 @@ const { requireUser } = require('./utils');
 
 activitiesRouter.get('/:activityId/routines', async (req, res, next) => {
     const aid = req.params
+    console.log('req.params', aid)
     try {
       const allActivities = await getPublicRoutinesByActivity(aid);
     
