@@ -6,10 +6,10 @@ MVP (MAIN GOALS)
 
 As any user when browsing the app, I want to
 
--- click links/tabs that display different parts of the app.
---see the route I am visiting in the url bar (i.e. Routines tab should have a route https://example.com/routines)
---stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh)
---see Components/Tabs with corresponding routes:
+--Done-- click links/tabs that display different parts of the app.
+--Done--see the route I am visiting in the url bar (i.e. Routines tab should have a route https://example.com/routines)
+--Done--stay on the "same page", while seeing the content update (i.e. use React Router, no page refresh)
+--Done--see Components/Tabs with corresponding routes:
     Home
     Routines
     My Routines
@@ -20,25 +20,25 @@ As any user when browsing the app, I want to
 
 As an unregistered visitor I want to:
 
---see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal
---be able to sign up for a new account with valid username/password combination
+--Done--see a Sign Up/Sign In form in the header/footer, on a tab (with or without matching route) or in a modal
+--Done--be able to sign up for a new account with valid username/password combination
 --see meaningful messages if there are errors during registration, so that I may correct them
 --see tabbed navigation for Routines and Activities (with matching routes)
 
 As a registered user I want to:
 
---be able to log in with my username/password combination
---see meaningful messages if there are errors during login, so that I may correct them
---stay logged in between page visits (for example, if I close my browser, and come back later)
+--Done--be able to log in with my username/password combination
+--Done--see meaningful messages if there are errors during login, so that I may correct them
+--Done--stay logged in between page visits (for example, if I close my browser, and come back later)
 --be able to log out if I am logged in
---see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
+--Done--see tabbed navigation for Routines, My Routines (once logged in), and Activities (with matching routes)
 
 3)Routines
 
 As any user on the Routines tab, I want to:
 
---see a list of all public routines showing:
---The routine name, goal, and creator's username
+--Done--see a list of all public routines showing:
+--Done--The routine name, goal, and creator's username
 --A list of activities for the routine, including their name, description, and duration and/or count
 
 As a registered user on the My Routines tab, I want to:

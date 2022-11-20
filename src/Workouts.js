@@ -15,7 +15,7 @@ const Workouts = () => {
                 })
                 const results = (await data.json()).publicRoutines
                 setWorkouts(results)
-                console.log(results)
+                // console.log(results)
             } catch(error){
                 console.log(error)
             }
@@ -34,10 +34,10 @@ const Workouts = () => {
                         <div className = "WorkoutTitle">{el.name}</div> 
                         <div className = "WorkoutDescription">{el.goal}</div> 
                         <div className = "WorkoutDescription">By: {el.creatorName}</div> 
-                        <div>Activities</div>
+                        <div>Activities:</div>
                         <div className = "activitiesContainer">
                         
-                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities">[ {ele.name} ]</div>}): "cheese"}
+                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities"> {ele.name}: Duration -- {ele.count} Count-- {ele.count},</div>}): "No Activities attached to Routine"}
                         </div>
                         </div>}) : "Internet Connection Not Valid"}
                         

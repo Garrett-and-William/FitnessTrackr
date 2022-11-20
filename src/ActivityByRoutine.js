@@ -1,11 +1,14 @@
 import {useState, useEffect} from "react"
 import {Link, useParams} from "react-router-dom"
+// import {} from "react-router"
 
 const ActivityByRoutine = () => {
     const [info, setInfo] = useState([])
-    const activityId = useParams()
+    const { activityId } = useParams()
+    // console.log(activityId)
     useEffect(()=>{
         // console.log('made it to front end')
+        
         try{
             async function getRoutineByActivity(){
                 const response = await fetch(`http://localhost:1337/api/activities/${activityId}/routines`, {
@@ -14,7 +17,7 @@ const ActivityByRoutine = () => {
                     }
                   })
                 const data = await response.json()
-                // console.log(' this is the all activities', data)
+                console.log(' this is the all data', data)
                 setInfo(data)
             } 
             getRoutineByActivity()  
@@ -23,17 +26,18 @@ const ActivityByRoutine = () => {
         }
         
     },[])
-  
+  console.log('this is the info', info)
+  console.log('this is the length', info.length)
     return (
         <div  className = "LowerValue">
             {info && info.length ? info.map((el)=> {return <div className = "WorkoutContainer" key = {el.id}>
-                
+            
                 <div className = "WorkoutTitle">{el.name}</div>
-                <div className = "WorkoutDescription">{el.description}</div>
+                <div className = "WorkoutDescription">{el.goal}</div>
                 
                 <Link to = {`/WorkoutActivityAll/${el.id}`}> Edit Activity</Link>
                 
-            </div>}): "sorry internet connection not valid"}
+            </div>}): "This Activity is not attached to any Public Routines"}
         </div>
     )
 

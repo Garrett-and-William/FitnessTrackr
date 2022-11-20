@@ -1,5 +1,5 @@
 const client = require("./client");
-const { attachActivitiesToRoutines,getActivityById } = require("./activities")
+const { attachActivitiesToRoutines, getActivityById } = require("./activities")
 const { getUserByUserName } = require("./users")
 
 
@@ -21,11 +21,11 @@ async function createRoutine({ creatorId, isPublic, name, goal }) {
 async function getRoutineById(id) {
   console.log(id)
   try {
-    const {rows: [ getbyid ] } = await client.query(`
+    const {rows} = await client.query(`
         SELECT * FROM routines
         WHERE id = $1;
     `,[id])
-    return getbyid
+    return rows
   } catch (error) {
       console.log(error)
   }
@@ -112,14 +112,25 @@ async function getPublicRoutinesByUser({ username }) {
   } 
 }
 
-async function getPublicRoutinesByActivity({ id }) {
+async function getPublicRoutinesByActivity( id ) {
   try {
-    const activity = getActivityById(id)
-    const activities = await client.query(`
-    SELECT * FROM routineactivities
-    WHERE 'activityId' = ${activity.routineId} AND 'isPublic' = true;`)
+    // console.log('routebyactive', id)
+    const activity = await getActivityById(id)
+    console.log(activity.id)
+    const {rows: [activeroute]} = await client.query(`
+      SELECT * FROM routineactivities
+      WHERE "activityId" = ${activity.id} 
+      ;`)
 
-    return activities
+console.log(activeroute)
+
+
+    const routes = await getRoutineById(activeroute.routineId)
+    console.log(routes)
+      if (routes.isPublic == false){
+        return null
+      }
+    return routes
 
     // let checkit = activities.rows.map((el) => {return ", "})
     // let checkitInd = activities.rows.map((_,ind) => {return })

@@ -48,11 +48,13 @@ routinesRouter.post('/', requireUser, async (req, res, next) => {
       postRoutine.goal = goal;
       postRoutine.isPublic = isPublic;
   
-      const routine = await createRoutine(postRoutine);
+      const {rows: [routine]} = await createRoutine(postRoutine);
   
       if (routine) {
+        console.log('routine', routine)
         res.send(routine);
-        alert('Routine has posted')
+        
+        
       } else {
         next({
           name: 'RoutineCreationError',
