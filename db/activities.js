@@ -17,9 +17,11 @@ async function createActivity({ name, description }) {
 
 async function getAllActivities() {
     try {
-      const {rows} = await client.query(`
-      SELECT * from activities;`)
-      // console.log(rows)
+      const { rows } = await client.query(`
+      SELECT * FROM "activities";`)
+     
+      // console.log('this is the active', rows)
+      // console.log('these are the rows', rows)
       return rows
     } catch (error) {
       console.log(error)
@@ -83,11 +85,14 @@ async function attachActivitiesToRoutines(routines) {
   }
 }
 
-async function updateActivity({ id, ...fields }) {
+async function updateActivity( id, {...fields}) {
   // don't try to update the id
   // do update the name and description
   // return the updated activity
+ console.log(id.activityId)
   console.log(fields)
+  // const fields = updateFields.updateFields
+  console.log("This is the field:", fields)
   const stringify = Object.keys(fields).map((key, index) => {
     return `"${key}" = $${index + 1} `
   }).join(', ')
@@ -95,9 +100,10 @@ async function updateActivity({ id, ...fields }) {
     const {rows: [updateActivity]} = await client.query(`
       UPDATE activities
       SET ${stringify}
-      WHERE id = ${id}
+      WHERE id = ${id.activityId}
       RETURNING *;
     `, Object.values(fields))
+    console.group('update func', updateActivity)
     return updateActivity
   } catch(error){
     console.log(error)

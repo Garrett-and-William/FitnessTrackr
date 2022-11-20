@@ -10,16 +10,18 @@ const Profile = () => {
 
 useEffect(() => {
     async function isUserLoggedIn() {
+        console.log(`${localStorage.getItem("token")}`)
         try{
-            const data = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/me', 
+            const data = await fetch('http://localhost:1337/api/users/me', 
             {
-                headers : {
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
             })
-            
+            console.log('here')
             const results = await data.json()
+            console.log('is user logged in', results)
             setUser(results.username)
             
 
@@ -34,9 +36,10 @@ useEffect(() => {
 
 useEffect(() => { 
 async function getMyRoutines(){
+    console.log('profile user', user)
     if(user != undefined){
         try{
-            const request = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${user}/routines`, {
+            const request = await fetch(`http://localhost:1337/api/users/${user}/routines`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -22,11 +22,12 @@ async function createUser( {username, password }) {
 }
  // currently returning all users
 async function getUser(username, password) {
-  const userByName = await getUserByUserName(username);
-  const hashedPassword = userByName.password;
-  
-  const isValid = await bcrypt.compare(password, hashedPassword)
-  if (isValid == true){ //verify password against hashed password
+  // const userByName = await getUserByUserName(username);
+  // const hashedPassword = userByName.password;
+  // console.log('getUser', userByName, hashedPassword)
+  // const isValid = await bcrypt.compare(password, hashedPassword)
+  // console.log(isValid)
+  // if (isValid == true){ //verify password against hashed password
   try {
     //select username from user table
     const {rows:[user]} = await client.query(`
@@ -36,17 +37,17 @@ async function getUser(username, password) {
     `, [username]);
  
      
-  console.log(user)
+  // console.log(user)
  
     return user
   } catch (error) {
     return error;
   }
 
-    }else{
-    return console.log("password or user does not exist")
+//     }else{
+//     return console.log("password or user does not exist")
   
-}
+// }
 }
 
 async function getUserById(userId) {
@@ -70,12 +71,13 @@ async function getUserById(userId) {
 }
 
 
-async function getUserByUserName(username) {
+const getUserByUserName = async (username) => {
+  console.log('userbyusername', username)
   try {
     const { rows: [user] } = await client.query(`
       SELECT *
       FROM users
-      WHERE username = $1
+      WHERE username = $1;
     `, [username]);
 
     if (!user) {
@@ -95,5 +97,5 @@ module.exports = {
   createUser,
   getUser,
   getUserById,
-  getUserByUserName,
+  getUserByUserName
 }
