@@ -5,9 +5,6 @@ const { getAllActivities, createActivity, updateActivity, getPublicRoutinesByAct
 const { requireUser } = require('./utils');
 
 
-
-
-
 // GET /api/activities
 
 activitiesRouter.get('/', async (req, res, next) => {
