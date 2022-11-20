@@ -11,7 +11,7 @@ const ActivityByRoutine = () => {
         
         try{
             async function getRoutineByActivity(){
-                const response = await fetch(`http://localhost:1337/api/activities/${activityId}/routines`, {
+                const response = await fetch(`https://garrettwilliamfitness.onrender.com/api/activities/${activityId}/routines`, {
                     headers: {
                       'Content-Type': 'application/json',
                     }
