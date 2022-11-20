@@ -6,6 +6,7 @@ const NavBar = () => {
     async function logout(){
         localStorage.removeItem("token")
         navigate("/")
+        alert('You have succesfully logged out')
     }
 
 

@@ -89,19 +89,10 @@ usersRouter.post('/register', async (req, res, next) => {
 // GET /api/users/me
 usersRouter.get('/me', async (req, res, next) => {
     const {username, password} = req.user;
-    // console.log(req.user)
     
-    
-    
-   
-    // if(!user){
-    //     next({
-    //         name: 'notLoggedIn',
-    //         message: 'You must be logged in to continue!'
-    // })
     try {
     const user = await getUser(username, password)
-    console.log('/me', user)
+    // console.log('/me', user)
    res.send(user)
     } catch ({ name, message }) {
       next({ name, message })

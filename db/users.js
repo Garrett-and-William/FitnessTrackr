@@ -72,7 +72,7 @@ async function getUserById(userId) {
 
 
 const getUserByUserName = async (username) => {
-  console.log('userbyusername', username)
+  // console.log('userbyusername', username)
   try {
     const { rows: [user] } = await client.query(`
       SELECT *

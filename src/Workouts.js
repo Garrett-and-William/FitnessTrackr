@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react"
 import {Link} from "react-router-dom"
-
+const { DB_URL } = process.env;
 const Workouts = () => {
     const [workouts, setWorkouts] = useState()
     useEffect(()=> {
-
+// console.log(process.env.DB_URL)
         async function getAllWorkouts () {
             try{
-                const data = await fetch('http://localhost:1337/api/routines', 
+                const data = await fetch(`$https://garrettwilliamfitness.onrender.com//api/routines`, 
                 {
                     headers : {
                         'Content-Type': 'application/json'
@@ -37,7 +37,10 @@ const Workouts = () => {
                         <div>Activities:</div>
                         <div className = "activitiesContainer">
                         
-                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities"> {ele.name}: Duration -- {ele.count} Count-- {ele.count},</div>}): "No Activities attached to Routine"}
+                        {el.activities && el.activities.length ? el.activities.map((ele) => {return <div className = "WorkoutActivities" key = {ele.id}> {ele.name}: Duration -- {ele.count} Count-- {ele.count}
+                        <Link to = {`/WorkoutActivityAll/${ele.id}/routines`}> View Activity</Link>
+                        
+                        </div>}): "No Activities attached to Routine"}
                         </div>
                         </div>}) : "Internet Connection Not Valid"}
                         

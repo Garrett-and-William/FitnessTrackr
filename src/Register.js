@@ -8,8 +8,8 @@ const Register = () => {
         
         async function logInApi (event) {
             event.preventDefault()
-            console.log('register started')
-            console.log(username, password) 
+            // console.log('register started')
+            // console.log(username, password) 
 
             try{
                 const data = await fetch('http://localhost:1337/api/users/register', 
@@ -24,7 +24,7 @@ const Register = () => {
                     
                 })
                 const results = await data.json()
-                console.log(results)
+                // console.log(results)
                 if (results.user.id) {
                     localStorage.setItem("token", results.token)   
                 } else {
