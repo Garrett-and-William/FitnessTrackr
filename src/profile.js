@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const Profile = () => {
 
     const [user, setUser] = useState()
     const [info, setInfo] = useState()
-    
+    const navigate = useNavigate()
     
 
 useEffect(() => {
@@ -34,7 +34,6 @@ useEffect(() => {
     isUserLoggedIn()
 },[])
 
-useEffect(() => { 
 async function getMyRoutines(){
     console.log('profile user', user)
     if(user != undefined){
@@ -44,7 +43,9 @@ async function getMyRoutines(){
                     'Content-Type': 'application/json',
                 },
         })
+            // console.log(await request.json())
             const response = await request.json()
+            console.log(response)
             setInfo(response)
             } catch(error){
         console.log(error)
@@ -52,14 +53,41 @@ async function getMyRoutines(){
     }
     }   
 }
+
+useEffect(() => { 
 getMyRoutines()
 },[user])
+
+async function deleteFrom (id){
+    console.log(id)
+    try {
+        const req = await fetch(`http://localhost:1337/api/routines/${id}`, {
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+          })
+        const deleted = await req.json()
+        getMyRoutines()
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
 
     return (
-                    <Link to = "/" className = "NavTextOne">{user}{info}There has been an Profile click here to go home</Link>
+        <div  className = "LowerValue">
+        {info && info.length ? info.map((el)=> {return <div className = "WorkoutContainer" key = {el.id}>
+            
+            <div className = "WorkoutTitle">{el.name}</div>
+            <div className = "WorkoutDescription">{el.goal}</div>
+            <div className = "WorkoutDescription">{el.isPublic === true ? "Public" : "Private"}</div>
+            <button onClick = {()=> {deleteFrom(el.id)}}>Delete</button>
+        </div>}): "sorry internet connection not valid"}
+    </div>
 
     )
 }

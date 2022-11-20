@@ -105,13 +105,12 @@ routinesRouter.patch('/:routineId', requireUser, async (req, res, next) => {
 
 routinesRouter.delete('/:routineId', requireUser, async (req, res, next) => {
     try {
-      const routine = await getRoutineById(req.params);
-  
+      const routine = await getRoutineById(req.params.routineId);
+      console.log("this is rout:", routine)
       if (routine && routine.creatorId === req.user.id) {
        await Promise.all(
         destroyRoutineActivity(routine.routineId),
         destroyRoutine(routine.id)
-
        )
   
         res.send('Succesfully Deleted');
