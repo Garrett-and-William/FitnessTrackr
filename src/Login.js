@@ -11,7 +11,7 @@ const Login = () => {
     try{
         //http://fitnesstrac-kr.herokuapp.com
         //http://localhost:1337
-        const data = await fetch('http://localhost:1337/api/users/login', 
+        const data = await fetch('https://garrettwilliamfitness.onrender.com/api/users/login', 
         {
             method : "POST",
             headers : {

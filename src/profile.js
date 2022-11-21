@@ -114,8 +114,9 @@ async function changeId(id){
 }
 async function attachActivity(event){
     event.preventDefault()
+    
     try {
-        const req = await fetch(`https://garrettwilliamfitness.onrender.com/api/routines/${changeStateId}/activities`, {
+        const req = await fetch(`https://garrettwilliamfitness.onrender/api/routines/${changeStateId}/activities`, {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
